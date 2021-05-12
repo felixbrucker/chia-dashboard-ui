@@ -1,0 +1,21 @@
+{
+  "dir": "ltr",
+  "lang": "en",
+  "name": "Chia-Dashboard",
+  "short_name": "Chia-Dashboard",
+  "theme_color": "#3AAC59",
+  "background_color": "transparent",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "any",
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "assets/favicon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    }
+  ]
+}
