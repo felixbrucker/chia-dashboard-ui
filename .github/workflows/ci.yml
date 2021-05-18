@@ -15,6 +15,7 @@ jobs:
       - name: yarn install
         run: yarn install
       - name: Deploy to gh-pages
+        if: github.ref == 'refs/heads/master'
         run: yarn run deploy
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
