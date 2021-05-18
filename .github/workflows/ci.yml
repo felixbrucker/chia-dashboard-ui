@@ -18,4 +18,4 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: yarn run deploy
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

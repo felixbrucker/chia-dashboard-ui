@@ -6,7 +6,7 @@
     "start": "ng serve --watch",
     "build": "ng build --optimization=true --prod=true --sourceMap=false",
     "build-dev": "ng build",
-    "deploy": "ng deploy",
+    "deploy": "ng deploy --no-silent",
     "update": "ncu -u"
   },
   "private": true,
