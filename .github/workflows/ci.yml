@@ -17,4 +17,4 @@ jobs:
       - name: Deploy to gh-pages
         run: yarn run deploy
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
