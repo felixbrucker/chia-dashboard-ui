@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h5>Farmer ({{satelliteName}})</h5>
+    <h5 [class]="colorClassForSyncStatus">{{status}}</h5>
+  </div>
+  <div class="card-body farmer-card">
+    <div echarts [options]="chartOptions" [merge]="chartUpdateOptions" theme="default" class="farming-info-chart"></div>
+    <div class="row">
+      <div class="col-12 col-sm-6">
+        <div class="d-flex justify-content-between">
+          <div class="card-font-size" placement="bottom" ngbTooltip="The average harvester response time in milliseconds">Average RT</div>
+          <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(averageHarvesterResponseTime)">{{averageHarvesterResponseTimeFormatted}}</div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="d-flex justify-content-between">
+          <div class="card-font-size" placement="bottom" ngbTooltip="The worst harvester response time in milliseconds">Worst RT</div>
+          <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(worstHarvesterResponseTime)">{{worstHarvesterResponseTimeFormatted}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <span class="dot"
+            [attr.green]="lastUpdatedState === 0 ? true : null"
+            [attr.orange]="lastUpdatedState === 1 ? true : null"
+            [attr.red]="lastUpdatedState === 2 ? true : null">
+      </span>
+      Last updated {{lastUpdatedBefore}}</small>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="d-flex justify-content-center" style="padding-top: 1rem" *ngIf="isInitialLoading">
+  <app-loading-state></app-loading-state>
+</div>
+<div class="d-flex justify-content-center" style="padding-top: 1rem" *ngIf="!isInitialLoading && satellites.length === 0">
+  <app-empty-state [icon]="faSatellite" [text]="'No Satellites added yet'"></app-empty-state>
+</div>
+<div class="d-flex flex-row flex-wrap" *ngIf="!isInitialLoading && satellites.length > 0">
+  <app-satellite *ngFor="let satellite of satellites; trackBy: trackBy" [satellite]="satellite" (delete)="onDelete(satellite)" class="p-1"></app-satellite>
+</div>
+<app-confirmation-modal></app-confirmation-modal>
+<div class="d-flex justify-content-center" style="padding-top: 2rem">
+  <app-download-links></app-download-links>
+</div>

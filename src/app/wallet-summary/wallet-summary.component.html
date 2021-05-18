@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h5>Wallet Summary</h5>
+    <h5 [class]="colorClassForSyncStatus">{{status}}</h5>
+  </div>
+  <div class="card-body card-body-with-title">
+    <div class="d-flex justify-content-between">
+      <div class="card-font-size">Total Balance</div>
+      <div class="card-font-size font-weight-bold" placement="bottom" ngbTooltip="{{totalBalanceFiat}}">{{totalBalanceFormatted}} XCH</div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="card-font-size">Wallet Count</div>
+      <div class="card-font-size font-weight-bold">{{walletCount}}</div>
+    </div>
+  </div>
+</div>

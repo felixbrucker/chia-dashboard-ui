@@ -1,0 +1,74 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~ngx-toastr/toastr-bs4-alert';
+
+.table th { border-top: none; }
+
+html, body {
+  height: 100%;
+  padding-top: 2.4em;
+}
+.dark-theme {
+  background-color: #36393f;
+  color: #cfd0d1;
+}
+
+@media (min-width: 1700px) {
+  .container-fluid {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+}
+
+.card {
+  background-color: #2f3136;
+}
+.card-header {
+  padding-bottom: 0.15rem;
+}
+.card-body {
+  padding-top: 1rem;
+}
+.card-body-with-title {
+  padding-top: 0.5rem;
+}
+.card-font-size {
+  font-size: 18px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+$color-green: rgb(75, 210, 143);
+$color-orange: rgb(255, 170, 0);
+$color-blue: rgb(66, 134, 244);
+$color-red: rgb(255, 77, 77);
+span[green] {
+  background-color: $color-green;
+}
+span[orange] {
+  background-color: $color-orange;
+}
+span[blue] {
+  background-color: $color-blue;
+}
+span[red] {
+  background-color: $color-red;
+}
+.color-green {
+  color: $color-green;
+}
+.color-orange {
+  color: $color-orange;
+}
+.color-red {
+  color: $color-red;
+}
+.color-blue {
+  color: $color-blue;
+}

@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h5 style="margin-right: 1rem">
+      <editable (save)="updateName()" (cancel)="cancelNameUpdate()">
+        <ng-template viewMode>{{satellite.name}}</ng-template>
+
+        <ng-template editMode>
+          <input editableOnEnter editableOnEscape class="form-control" type="text" [formControl]="nameControl" />
+        </ng-template>
+      </editable>
+    </h5>
+    <fa-icon
+      [icon]="faTrash"
+      (click)="onDelete()"
+      class="fa delete-button"
+      placement="bottom"
+      ngbTooltip="Delete this Satellite"
+    ></fa-icon>
+  </div>
+  <div class="card-body">
+    <button
+      (click)="toggleHidden()"
+      class="btn btn-dark"
+      placement="bottom"
+      ngbTooltip="The Satellite is currently {{satellite.hidden ? 'hidden' : 'shown'}} in the dashboard"
+    >
+      <fa-icon
+        [icon]="satellite.hidden ? faEyeSlash : faEye"
+        [class.hidden]="satellite.hidden"
+        class="fa toggle-hidden-icon"
+      ></fa-icon>
+      {{satellite.hidden ? 'Hidden' : 'Visible'}}
+    </button>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted d-flex justify-content-between">
+      <span>Last updated {{lastUpdatedBefore}}</span>
+      <span *ngIf="satellite.version">&nbsp;| v{{satellite.version}}</span>
+    </small>
+  </div>
+</div>

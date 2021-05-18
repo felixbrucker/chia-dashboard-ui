@@ -1,0 +1,64 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <h5>Farm Summary</h5>
+    <h5 [class]="colorClassForSyncStatus">{{status}}</h5>
+  </div>
+  <div class="card-body card-body-with-title">
+    <div class="row">
+      <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-8">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Total Capacity</div>
+              <div class="card-font-size font-weight-bold">{{formattedCapacity}}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Network space</div>
+              <div class="card-font-size font-weight-bold">{{networkSpace}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-8">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Total Plots</div>
+              <div class="card-font-size font-weight-bold">{{plotCount}}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Est. time to win</div>
+              <div class="card-font-size font-weight-bold">{{estimatedTimeToWinInHours}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-8">
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Daily Reward</div>
+              <div class="card-font-size font-weight-bold" placement="bottom" ngbTooltip="{{dailyRewardFiat}}">{{dailyRewardXch}}</div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-24">
+            <div class="d-flex justify-content-between">
+              <div class="card-font-size">Last block won</div>
+              <div class="card-font-size font-weight-bold">
+                <span *ngIf="lastHeightFarmedOrNull">
+                  <a href="https://chiaexplorer.com/blockchain/block/height/{{lastHeightFarmedOrNull}}" target="_blank" style="color: #cfd0d1">{{lastHeightFarmedOrNull}}</a>
+                  ({{lastHeightFarmedDuration}})
+                </span>
+                <span *ngIf="!lastHeightFarmedOrNull">N/A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

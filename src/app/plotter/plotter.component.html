@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Plotter ({{satelliteName}})</h5>
+  </div>
+  <div class="card-body card-body-with-title" [class.plotter-card]="runningJobsCount > 0">
+    <h5 class="card-title">
+      Status: <span [class]="colorClassForStatus">{{status}}</span>
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted d-flex justify-content-between">
+      <span>
+        Running: {{runningJobsCount}}<span *ngIf="pendingJobsCount > 0"> / Pending: {{pendingJobsCount}}</span>
+      </span>
+      <span *ngIf="completedPlotsToday !== undefined">
+        <span ngbTooltip="Today">T</span>: {{completedPlotsToday}} / <span ngbTooltip="Yesterday">Y</span>: {{completedPlotsYesterday}}
+      </span>
+    </h6>
+    <div class="table-responsive">
+      <table class="table table-sm table-dark plot-job-table">
+        <thead>
+          <tr>
+            <th scope="col">Size</th>
+            <th scope="col"><span ngbTooltip="Phase">P</span></th>
+            <th scope="col">Elapsed</th>
+            <th scope="col">Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let job of runningJobs">
+            <td>K-{{job.kSize}}</td>
+            <td *ngIf="job.phase !== undefined">{{job.phase}}</td>
+            <td *ngIf="job.phase === undefined">-</td>
+            <td>{{getJobRuntime(job)}}</td>
+            <td>{{getJobProgress(job)}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <span class="dot"
+            [attr.green]="lastUpdatedState === 0 ? true : null"
+            [attr.orange]="lastUpdatedState === 1 ? true : null"
+            [attr.red]="lastUpdatedState === 2 ? true : null">
+      </span>
+      Last updated {{lastUpdatedBefore}}</small>
+  </div>
+</div>

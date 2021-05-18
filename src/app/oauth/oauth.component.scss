@@ -1,0 +1,29 @@
+li {
+  list-style-position: inside;
+}
+
+.flex-container-col {
+  display: flex; /* or inline-flex */
+  flex-direction: column;
+}
+
+.flex-container-row {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown-menu {
+  background-color: #2f3136;
+  color: #cfd0d1;
+}
+.dropdown-item {
+  color: #cfd0d1;
+}
+.dropdown-divider {
+  border-top: 1px solid #262629;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  background-color: #262629;
+}

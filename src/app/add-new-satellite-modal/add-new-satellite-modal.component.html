@@ -1,0 +1,39 @@
+<ng-template #addSatelliteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" style="color: #474747">Add new satellite</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="!newSatellite.apiKey">
+      <input type="text" class="form-control" placeholder="Satellite name" [(ngModel)]="newSatelliteName" style="width: 20em">
+    </div>
+    <div *ngIf="newSatellite.apiKey">
+      <div class="alert alert-info" role="alert">
+        Your api key for the satellite {{newSatelliteName}}:
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control" [value]="newSatellite.apiKey" readonly>
+        <div class="input-group-append">
+          <div class="input-group-text"
+               ngbTooltip="Copy"
+               ngxClipboard
+               [cbContent]="newSatellite.apiKey"
+               style="cursor: pointer">
+            <fa-icon [icon]="faCopy"></fa-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button *ngIf="!newSatellite.apiKey" type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+    <button *ngIf="!newSatellite.apiKey" type="button" class="btn btn-success" (click)="createSatellite()" [disabled]="!newSatelliteName || newSatelliteName.length === 0">
+      <span *ngIf="isLoading">Adding</span>
+      <span *ngIf="!isLoading">Add</span>
+      <fa-icon [icon]="faCircleNotch" [spin]="true" *ngIf="isLoading" style="margin-top: 5px; margin-left: 0.8em"></fa-icon>
+    </button>
+    <button *ngIf="newSatellite.apiKey" type="button" class="btn btn-primary" (click)="modal.close(true)">Done</button>
+  </div>
+</ng-template>

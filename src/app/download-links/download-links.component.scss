@@ -1,0 +1,17 @@
+.download-button:hover{
+  background: #32a852;
+  border-color: #32a852;
+}
+.install-box {
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  padding: 1em 3em 1em 3em;
+  color: white;
+  transition-duration: .15s;
+  transition-timing-function: ease;
+  transition-property: border-color,background,color,transform,box-shadow;
+  font-size: 16px;
+  background: rgb(36, 41, 46);
+  border-color: rgb(36, 41, 46);
+}

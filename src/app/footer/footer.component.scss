@@ -1,0 +1,28 @@
+footer {
+  background-color: #2b2e33;
+}
+hr {
+  background-color: #18191c;
+}
+.fa{
+  font-size: 1.5em;
+}
+.link {
+  text-decoration: none;
+}
+.verticalLine {
+  border-left: 1px solid #18191c;
+}
+.highlight {
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
+  color: rgba(255, 255, 255, 0.6);
+}
+.highlight:hover{
+  color: rgba(255, 255, 255, 0.9);
+}
+@media (max-width: 715px) {
+  .footer-logo {
+    display: none;
+  }
+}

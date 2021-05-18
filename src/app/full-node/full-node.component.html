@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Full Node ({{satelliteName}})</h5>
+  </div>
+  <div class="card-body card-body-with-title">
+    <h5 class="card-title">
+      Status: <span [class]="colorClassForSyncStatus">{{status}}</span>
+    </h5>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <div class="d-flex justify-content-between">
+        <span>Synced to {{syncedHeight}}</span>
+        <ngb-progressbar *ngIf="!isSynced && tipHeight > 0"
+                         [striped]="true"
+                         [animated]="true"
+                         [type]="syncProgressBarType"
+                         [value]="syncProgress"
+                         style="width: 6rem;margin-top: 3px"
+        >
+          {{syncProgress.toFixed(2)}}%
+        </ngb-progressbar>
+      </div>
+    </h6>
+    <div class="d-flex justify-content-between">
+      <div class="card-font-size">Connections</div>
+      <div class="card-font-size font-weight-bold"><span [class]="colorClassForConnectionCount">{{fullNodeConnectionCount}}</span></div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="card-font-size">Network space</div>
+      <div class="card-font-size font-weight-bold">{{networkSpace}}</div>
+    </div>
+    <div class="d-flex justify-content-between">
+      <div class="card-font-size">Difficulty</div>
+      <div class="card-font-size font-weight-bold">{{difficulty}}</div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <span class="dot"
+            [attr.green]="lastUpdatedState === 0 ? true : null"
+            [attr.orange]="lastUpdatedState === 1 ? true : null"
+            [attr.red]="lastUpdatedState === 2 ? true : null">
+      </span>
+      Last updated {{lastUpdatedBefore}}</small>
+  </div>
+</div>

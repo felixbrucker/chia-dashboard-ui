@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Wallet ({{satelliteName}})</h5>
+  </div>
+  <div class="card-body card-body-with-title">
+    <h5 class="card-title">Status: <span [class]="colorClassForSyncStatus">{{status}}</span></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Synced to {{syncedHeight}}</h6>
+    <div *ngFor="let wallet of wallets; trackBy: trackBy" class="d-flex justify-content-between">
+      <div class="card-font-size">{{wallet.name}}</div>
+      <div class="card-font-size" [class.font-weight-bold]="wallets.length === 1" placement="bottom" ngbTooltip="{{getBalanceFiat(wallet)}}">{{getRoundedBalance(wallet.balance.total)}} XCH</div>
+    </div>
+    <hr *ngIf="wallets.length > 1">
+    <div *ngIf="wallets.length > 1" class="d-flex justify-content-between">
+      <div class="card-font-size font-weight-bold">Total</div>
+      <div class="card-font-size font-weight-bold" placement="bottom" ngbTooltip="{{totalBalanceFiat}}">{{totalBalanceRounded}} XCH</div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted">
+      <span class="dot"
+            [attr.green]="lastUpdatedState === 0 ? true : null"
+            [attr.orange]="lastUpdatedState === 1 ? true : null"
+            [attr.red]="lastUpdatedState === 2 ? true : null">
+      </span>
+      Last updated {{lastUpdatedBefore}}</small>
+  </div>
+</div>

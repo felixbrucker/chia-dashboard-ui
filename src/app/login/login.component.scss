@@ -1,0 +1,41 @@
+.oauth-provider-button {
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 4px;
+  padding: 1em 3em 1em 3em;
+  color: white;
+  transition-duration: .15s;
+  transition-timing-function: ease;
+  transition-property: border-color,background,color,transform,box-shadow;
+  font-size: 16px;
+}
+
+.github-button {
+  background: rgb(36, 41, 46);
+  border-color: rgb(36, 41, 46);
+}
+
+.github-button:hover{
+  background: #555;
+  border-color: #555;
+}
+
+.discord-button {
+  background: #7289da;
+  border-color: #7289da;
+}
+
+.discord-button:hover{
+  background: #87a2ff;
+  border-color: #87a2ff;
+}
+
+.google-button {
+  background: rgb(207, 83, 74);
+  border-color: rgb(207, 83, 74);
+}
+
+.google-button:hover{
+  background: rgb(225, 98, 89);
+  border-color: rgb(225, 98, 89);
+}
