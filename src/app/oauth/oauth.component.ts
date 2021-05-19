@@ -40,7 +40,11 @@ export class OAuthComponent implements OnInit {
       });
       this.apiService.persistTokens(tokens);
     } catch (err) {
-      console.error(err);
+      let errorMessage = err.message;
+      if (err.response && err.response.data && err.response.data.error) {
+        errorMessage = err.response.data.error;
+      }
+      this.toastService.showErrorToast(`Login failed: ${errorMessage}`);
       await this.router.navigate(['/login']);
 
       return;
