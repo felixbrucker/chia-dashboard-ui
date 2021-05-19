@@ -101,7 +101,9 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "cname": "dashboard.chia.foxypool.io"
+            "cname": "dashboard.chia.foxypool.io",
+            "name": "Felix Brucker",
+            "email": "felix@felixbrucker.com"
           }
         }
       }
