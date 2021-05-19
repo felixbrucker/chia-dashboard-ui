@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ApiService} from "../api.service";
 import {Router} from "@angular/router";
 import {faDiscord, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons";
-import {discordClientId, githubClientId, googleClientId} from '../config';
+import {discordClientId, githubClientId, googleClientId, requestDiscordGuildPermission} from '../config';
 import {WINDOW} from '../window.provider';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
 
   get discordAuthUrl() {
-    return `https://discord.com/api/oauth2/authorize?client_id=${discordClientId}&redirect_uri=${this.getRedirectUri('discord')}&response_type=code&scope=identify email&prompt=none`;
+    return `https://discord.com/api/oauth2/authorize?client_id=${discordClientId}&redirect_uri=${this.getRedirectUri('discord')}&response_type=code&scope=${this.discordScopes}&prompt=none`;
   }
 
   get githubAuthUrl() {
@@ -57,5 +57,17 @@ export class LoginComponent implements OnInit {
 
   getRedirectUri(provider) {
     return `${this.window.location.protocol}//${this.window.location.host}/oauth/callback/${provider}`;
+  }
+
+  get discordScopes() {
+    const scopes = [
+      'identify',
+      'email',
+    ];
+    if (requestDiscordGuildPermission) {
+      scopes.push('guilds');
+    }
+
+    return scopes.join(' ');
   }
 }
