@@ -23,28 +23,35 @@
         </a>
       </li>
     </ul>
-    <div *ngIf="user && user.avatarUrl">
-      <img src="{{user.avatarUrl}}" width="30" height="30" style="border-radius: 100%">
+    <div *ngIf="user && user.avatarUrl" class="header-row-item">
+      <img src="{{user.avatarUrl}}" width="30" height="30" style="border-radius: 100%; cursor: pointer;" routerLink="/profile">
     </div>
-    <div *ngIf="isAuthenticated" style="padding-right: 8px; padding-top: 8px; padding-bottom: 8px">
-      <button type="button" class="btn btn-success" style="margin-left: 10px" (click)="openAddSatelliteModal()">
+    <div *ngIf="user && !user.avatarUrl" class="header-row-item">
+      <button type="button" class="btn btn-dark" routerLink="/profile" routerLinkActive="active">
+        Profile
+      </button>
+    </div>
+    <div *ngIf="isAuthenticated" class="header-row-item">
+      <button type="button" class="btn btn-success" (click)="openAddSatelliteModal()">
         + Add
       </button>
-      <div class="currency-select-wrapper">
-        <select class="custom-select currency-select" [ngModel]="selectedCurrency" (ngModelChange)="setSelectedCurrency($event)">
-          <option *ngFor="let currency of currencies" [ngValue]="currency" class="currency-select-option">{{ currency.toUpperCase() }}</option>
-        </select>
-      </div>
-      <button type="button" class="btn btn-secondary" style="margin-left: 10px" (click)="logout()">
+    </div>
+    <div class="currency-select-wrapper header-row-item" *ngIf="(isAuthenticated || hasShareKey) && currencies.length > 0">
+      <select class="custom-select currency-select" [ngModel]="selectedCurrency" (ngModelChange)="setSelectedCurrency($event)">
+        <option *ngFor="let currency of currencies" [ngValue]="currency" class="currency-select-option">{{ currency.toUpperCase() }}</option>
+      </select>
+    </div>
+    <div *ngIf="isAuthenticated" class="header-row-item-end">
+      <button type="button" class="btn btn-secondary" (click)="logout()">
         Logout
       </button>
     </div>
-    <div *ngIf="!isAuthenticated" style="padding-right: 8px; padding-top: 8px; padding-bottom: 8px">
+    <div *ngIf="!isAuthenticated" class="header-row-item-end">
       <button type="button" class="btn btn-primary" routerLink="/login" routerLinkActive="active" (click)="isMenuCollapsed = true">
         Login
       </button>
     </div>
-    <a class="btn btn-light" href="https://www.paypal.me/felixbrucker" role="button" target="_blank" (click)="isMenuCollapsed = true">
+    <a class="btn btn-light" href="https://www.paypal.me/felixbrucker" role="button" target="_blank" (click)="isMenuCollapsed = true" >
       Donate <fa-icon [icon]="faHeart" class="fa" style="color: rgb(219, 97, 162)"></fa-icon>
     </a>
   </div>

@@ -5,6 +5,7 @@ import {faDiscord, faGithub, faGoogle } from "@fortawesome/free-brands-svg-icons
 import {discordClientId, githubClientId, googleClientId, requestDiscordGuildPermission} from '../config';
 import {WINDOW} from '../window.provider';
 import { v4 as uuidv4 } from 'uuid';
+import {StateService} from '../state.service';
 
 @Component({
   selector: 'app-login',
@@ -19,12 +20,17 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private stateService: StateService,
     private router: Router,
     @Inject(WINDOW) private window: Window,
   ) {}
 
   async ngOnInit() {
     this.state = uuidv4();
+    if (this.apiService.shareKey) {
+      this.apiService.setShareKey(null);
+      this.stateService.clear();
+    }
     if (!this.apiService.isAuthenticated) {
       return;
     }

@@ -1,30 +1,30 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../api.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 import {StateService} from '../state.service';
+import {ApiService} from '../api.service';
 import { faSatellite } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-shared-dashboard',
+  templateUrl: '../dashboard/dashboard.component.html',
+  styleUrls: ['./shared-dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class SharedDashboardComponent implements OnInit {
   public faSatellite = faSatellite;
-  public shareKey: string = null;
+  public shareKey: string;
 
   constructor(
-    private apiService: ApiService,
-    private router: Router,
+    private route: ActivatedRoute,
     private stateService: StateService,
-  ) {}
+    private apiService: ApiService,
+  ) { }
 
-  async ngOnInit() {
-    if (!this.apiService.isAuthenticated) {
-      await this.router.navigate(['/login']);
-      return;
-    }
-    await this.stateService.init();
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(async (params: ParamMap) => {
+      this.shareKey = params.get('shareKey');
+      this.apiService.setShareKey(this.shareKey);
+      await this.stateService.initShared();
+    });
   }
 
   trackBy(index, item) {

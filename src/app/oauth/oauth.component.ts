@@ -26,7 +26,7 @@ export class OAuthComponent implements OnInit {
     try {
       const error = this.activatedRoute.snapshot.queryParamMap.get('error');
       if (error) {
-        console.error(error);
+        this.toastService.showErrorToast(`Login failed: ${error}`);
         await this.router.navigate(['/login']);
 
         return;

@@ -33,6 +33,8 @@ import { ConfirmationModalComponent } from './confirmation-modal/confirmation-mo
 import { PlotterComponent } from './plotter/plotter.component';
 import { EditableModule } from '@ngneat/edit-in-place';
 import {ClipboardModule} from 'ngx-clipboard';
+import { ProfileComponent } from './profile/profile.component';
+import { SharedDashboardComponent } from './shared-dashboard/shared-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import {ClipboardModule} from 'ngx-clipboard';
     FarmerComponent,
     ConfirmationModalComponent,
     PlotterComponent,
+    ProfileComponent,
+    SharedDashboardComponent,
   ],
   imports: [
     BrowserModule,

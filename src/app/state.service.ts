@@ -28,6 +28,9 @@ export class StateService {
   public farmers = [];
   public plotters = [];
 
+  private isInitialized = false;
+  private isInitializing = false;
+
   constructor(
     private apiService: ApiService,
     private toastService: ToastService,
@@ -38,13 +41,13 @@ export class StateService {
     if (!this.selectedCurrency) {
       this.setSelectedCurrency('usd');
     }
-    this.init();
   }
 
   async init() {
-    if (!this.apiService.isAuthenticated) {
+    if (!this.apiService.isAuthenticated || this.isInitialized || this.isInitializing) {
       return;
     }
+    this.isInitializing = true;
     try {
       await this.initState();
       if (this.isInitialLoading) {
@@ -60,6 +63,28 @@ export class StateService {
     if (!this.updateRatesInterval && enablePeriodicUpdates) {
       this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 10 * 1000);
     }
+    this.isInitialized = true;
+    this.isInitializing = false;
+  }
+
+  async initShared() {
+    if (this.isInitialized || this.isInitializing) {
+      return;
+    }
+    this.isInitializing = true;
+    try {
+      await this.initSharedState();
+    } finally {
+      this.isInitialLoading = false;
+    }
+    if (!this.updateSatellitesInterval && enablePeriodicUpdates) {
+      this.updateSatellitesInterval = setInterval(this.updateSharedSatellites.bind(this), 15 * 1000);
+    }
+    if (!this.updateRatesInterval && enablePeriodicUpdates) {
+      this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 10 * 1000);
+    }
+    this.isInitialized = true;
+    this.isInitializing = false;
   }
 
   async initState() {
@@ -68,6 +93,25 @@ export class StateService {
       this.updateSatellites(),
       this.updateRates(),
     ]);
+  }
+
+  async initSharedState() {
+    await Promise.all([
+      this.updateSharedSatellites(),
+      this.updateRates(),
+    ]);
+  }
+
+  clear() {
+    if (this.updateSatellitesInterval) {
+      clearInterval(this.updateSatellitesInterval);
+      this.updateSatellitesInterval = null;
+    }
+    if (this.updateRatesInterval) {
+      clearInterval(this.updateRatesInterval);
+      this.updateRatesInterval = null;
+    }
+    this.isInitialized = false;
   }
 
   onNewLatestSatelliteVersion(latestSatelliteVersion) {
@@ -101,6 +145,18 @@ export class StateService {
     }
     try {
       this.satellites = await this.apiService.getSatellites();
+      this.updateFromSatellites();
+    } catch (err) {
+      this.toastService.showErrorToast(`Failed to retrieve the satellites: ${err.message}`);
+
+      throw err;
+    }
+    this.stateUpdated.next();
+  }
+
+  async updateSharedSatellites() {
+    try {
+      this.satellites = await this.apiService.getSharedSatellites();
       this.updateFromSatellites();
     } catch (err) {
       this.toastService.showErrorToast(`Failed to retrieve the satellites: ${err.message}`);

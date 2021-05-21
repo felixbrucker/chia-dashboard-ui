@@ -4,6 +4,7 @@ import {ApiService} from '../api.service';
 import { faSatellite } from '@fortawesome/free-solid-svg-icons';
 import {ConfirmationModalComponent} from '../confirmation-modal/confirmation-modal.component';
 import {ToastService} from '../toast.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-satellite-list',
@@ -17,10 +18,16 @@ export class SatelliteListComponent implements OnInit {
   constructor(
     private stateService: StateService,
     private apiService: ApiService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router,
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    if (!this.apiService.isAuthenticated) {
+      await this.router.navigate(['/login']);
+      return;
+    }
+    await this.stateService.init();
   }
 
   trackBy(index, satellite) {

@@ -10,11 +10,12 @@ import * as moment from 'moment';
 })
 export class ApiService {
   private readonly client: AxiosInstance;
-  public isAuthenticated: boolean = !!this.accessToken && !!this.refreshToken;
   private isRefreshing: boolean = false;
+  public shareKey: string = null;
+  public isAuthenticated: boolean = !!this.accessToken && !!this.refreshToken && !this.shareKey;
 
   private get accessToken() {
-    return this.localStorageService.getItem('auth/accessToken');
+    return this.shareKey || this.localStorageService.getItem('auth/accessToken');
   }
 
   private get refreshToken() {
@@ -59,9 +60,14 @@ export class ApiService {
         if (!error.response || error.response.status !== 401 || !error.config || error.config.isRetryRequest) {
           return Promise.reject(error);
         }
-        if (!this.refreshToken) {
-          this.isAuthenticated = false;
+        if (this.shareKey) {
+          this.setShareKey(null);
           await this.router.navigate(['/login']);
+
+          return Promise.reject(error);
+        }
+        if (!this.refreshToken) {
+          await this.logout();
 
           return Promise.reject(error);
         }
@@ -98,6 +104,11 @@ export class ApiService {
     }, 5 * 1435);
   }
 
+  setShareKey(shareKey) {
+    this.shareKey = shareKey;
+    this.isAuthenticated = shareKey ? false : (!!this.accessToken && !!this.refreshToken);
+  }
+
   async getUser() {
     return this.request({ url: 'me' });
   }
@@ -116,6 +127,14 @@ export class ApiService {
 
   async updateSatellite({ id, data }) {
     return this.request({ method: 'patch', url: `satellite/${id}`, data });
+  }
+
+  async updateUser({ data }) {
+    return this.request({ method: 'patch', url: 'me', data });
+  }
+
+  async getSharedSatellites() {
+    return this.request({ url: 'shared/satellites' });
   }
 
   async getRates() {

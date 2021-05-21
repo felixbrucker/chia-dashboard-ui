@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center" style="padding-top: 2rem">
+  <div class="card col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-9">
+    <div class="card-body">
+      <h5 class="card-title">Share your dashboard</h5>
+      <div style="padding-bottom: 0.5rem">Share your dashboard with friends</div>
+      <div *ngIf="user.shareKey">
+        <div class="input-group">
+          <input type="text" class="form-control" [value]="shareUrl" readonly disabled>
+          <div class="input-group-append">
+            <div class="input-group-text"
+                 ngbTooltip="Copy"
+                 ngxClipboard
+                 [cbContent]="shareUrl"
+                 style="cursor: pointer">
+              <fa-icon [icon]="faCopy"></fa-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer d-flex justify-content-end" style="background-color: initial">
+      <button (click)="toggleShared()" class="btn btn-light">
+        {{user.shareKey ? 'Disable sharing' : 'Share dashboard'}}
+      </button>
+    </div>
+  </div>
+</div>
