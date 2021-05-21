@@ -112,6 +112,7 @@ export class StateService {
       this.updateRatesInterval = null;
     }
     this.isInitialized = false;
+    this.isInitializing = false;
   }
 
   onNewLatestSatelliteVersion(latestSatelliteVersion) {
