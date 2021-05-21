@@ -61,7 +61,6 @@ export class ApiService {
           return Promise.reject(error);
         }
         if (this.shareKey) {
-          this.setShareKey(null);
           await this.router.navigate(['/login']);
 
           return Promise.reject(error);
