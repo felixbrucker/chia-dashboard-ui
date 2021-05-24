@@ -40,7 +40,7 @@
     "ngx-echarts": "^6.0.1",
     "ngx-scrolltop": "^2.4.0",
     "ngx-toastr": "^13.2.1",
-    "rxjs": "^6.6.2",
+    "rxjs": "^6.6.7",
     "semver": "^7.3.5",
     "tslib": "^2.0.0",
     "uuid": "^8.3.2",
