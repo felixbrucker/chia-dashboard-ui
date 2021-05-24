@@ -6127,10 +6127,10 @@ ngx-echarts@^6.0.1:
   dependencies:
     tslib "^2.0.0"
 
-ngx-scrolltop@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ngx-scrolltop/-/ngx-scrolltop-2.0.0.tgz#801454079f841cac2e33d0c248125592215dfa6d"
-  integrity sha512-jqXBu3Bc+uzpL4HWhSmSyMSkLftfou00xzrVcNMBFlVECdJVb3Xh2Nt+t3Y94/emxD3WKRJS2GJG1DPlPIJHPQ==
+ngx-scrolltop@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ngx-scrolltop/-/ngx-scrolltop-2.4.0.tgz#87796607f988e5577a3630ba0fd948a2add05da5"
+  integrity sha512-wJQv3M9i09Rxxeq2ESjZo1NAcYWjQXqVnKIYMOA1D+CfPg68/uLGl7z+d6IdpweCPNsDFVciYA/fxA6Y5liX4g==
   dependencies:
     tslib "^2.0.0"
 

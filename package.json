@@ -38,7 +38,7 @@
     "moment": "^2.27.0",
     "ngx-clipboard": "^14.0.1",
     "ngx-echarts": "^6.0.1",
-    "ngx-scrolltop": "^2.0.0",
+    "ngx-scrolltop": "^2.4.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "^6.6.2",
     "semver": "^7.3.5",
