@@ -59,6 +59,9 @@ export class FarmerComponent implements OnInit {
   }
 
   get averageHarvesterResponseTime() {
+    if (this.farmer.averageHarvesterResponseTime !== undefined) {
+      return this.farmer.averageHarvesterResponseTime;
+    }
     if (!this.farmer.harvesterResponseTimes || this.farmer.harvesterResponseTimes.length === 0) {
       return null;
     }
@@ -79,6 +82,9 @@ export class FarmerComponent implements OnInit {
   }
 
   get worstHarvesterResponseTime() {
+    if (this.farmer.worstHarvesterResponseTime !== undefined) {
+      return this.farmer.worstHarvesterResponseTime;
+    }
     if (!this.farmer.harvesterResponseTimes || this.farmer.harvesterResponseTimes.length === 0) {
       return null;
     }

@@ -16,12 +16,8 @@ export class FullNodeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get fullNodeConnections() {
-    return this.fullNode.fullNodeConnections;
-  }
-
   get fullNodeConnectionCount() {
-    return this.fullNodeConnections.length;
+    return this.fullNode.fullNodeConnectionsCount !== undefined ? this.fullNode.fullNodeConnectionsCount : this.fullNode.fullNodeConnections.length;
   }
 
   get satelliteName() {

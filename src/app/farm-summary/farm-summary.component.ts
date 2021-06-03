@@ -52,7 +52,7 @@ export class FarmSummaryComponent implements OnInit {
       return 'Unknown';
     }
     const farmerWithRecentFarmingInfo = this.farmers.map(farmer => this.farmerHasRecentFarmingInfos(farmer));
-    const connectedHarvesters = this.harvesters.map(harvester => harvester.farmerConnections.length > 0);
+    const connectedHarvesters = this.harvesters.map(harvester => (harvester.farmerConnectionsCount !== undefined ? harvester.farmerConnectionsCount : harvester.farmerConnections.length) > 0);
     const fullNodesSynced = this.fullNodes.map(fullNode => this.isFullNodeSynced(fullNode));
     const allFarmerWithRecentFarmingInfo = farmerWithRecentFarmingInfo.every(hasRecentFarmingInfo => !!hasRecentFarmingInfo);
     const allConnectedHarvesters = connectedHarvesters.every(isConnected => !!isConnected);

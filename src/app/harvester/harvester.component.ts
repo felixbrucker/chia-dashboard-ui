@@ -18,11 +18,15 @@ export class HarvesterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get farmerConnectionsCount() {
+    return this.harvester.farmerConnectionsCount !== undefined ? this.harvester.farmerConnectionsCount : this.harvester.farmerConnections.length;
+  }
+
   get status() {
     if (this.lastUpdatedState !== 0) {
       return 'Unknown';
     }
-    if (this.harvester.farmerConnections.length > 0) {
+    if (this.farmerConnectionsCount > 0) {
       return 'Connected';
     }
 
