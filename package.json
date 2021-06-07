@@ -34,7 +34,7 @@
     "core-js": "^3.6.5",
     "echarts": "5.0.2",
     "fuse.js": "^6.4.6",
-    "humanize-duration": "^3.26.0",
+    "humanize-duration": "^3.27.0",
     "moment": "^2.29.1",
     "ngx-clipboard": "^14.0.1",
     "ngx-echarts": "^6.0.1",
