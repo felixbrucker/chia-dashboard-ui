@@ -1428,10 +1428,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@ngneat/edit-in-place@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@ngneat/edit-in-place/-/edit-in-place-1.3.1.tgz#15edfce68de1f48042d58a1628eb4f255dd9c94c"
-  integrity sha512-VoCp5aNDeDP8WjcNRRaPjolBLykduyUtwStFeEGMFzHLDkAwPlrazYYQx3ybYzJR0+dT1iImSqtcu++u243taw==
+"@ngneat/edit-in-place@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/edit-in-place/-/edit-in-place-1.5.0.tgz#1cf869dced3a49591c68e35d682d8144a8417855"
+  integrity sha512-RwcOpV2ux/7rj9l8PyDpHZb7uncAN5bqGGKChu10ZEcTAkKsswxQ+sT2tNoPx8zgfx8nzp76VocOw83rcHAKBQ==
   dependencies:
     tslib "^2.0.0"
 
