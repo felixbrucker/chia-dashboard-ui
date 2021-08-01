@@ -86,4 +86,26 @@ export class HarvesterComponent implements OnInit {
 
     return `≈ ${moment.duration(avgTimeToWinInMinutes, 'minutes').humanize()}`;
   }
+
+  get ogPlots() {
+    return this.harvester.ogPlots;
+  }
+
+  get nftPlots() {
+    return this.harvester.nftPlots;
+  }
+
+  get plotCountString() {
+    if (!this.ogPlots && !this.nftPlots) {
+      return `${this.plotCount} Plots`;
+    }
+    if (this.ogPlots && this.ogPlots.count === 0) {
+      return `${this.plotCount} Plots (NFT)`;
+    }
+    if (this.nftPlots && this.nftPlots.count === 0) {
+      return `${this.plotCount} Plots (OG)`;
+    }
+
+    return `${this.plotCount} Plots (OG: ${this.ogPlots.count} | NFT: ${this.nftPlots.const})`;
+  }
 }

@@ -86,6 +86,39 @@ export class FarmSummaryComponent implements OnInit {
     return this.harvesters.reduce((acc, harvester) => acc.plus(harvester.plotCount), new BigNumber(0)).toNumber();
   }
 
+  get ogPlotCount() {
+    return this.harvesters
+      .filter(harvester => harvester.ogPlots)
+      .reduce((acc, harvester) => acc.plus(harvester.ogPlots.count), new BigNumber(0)).toNumber();
+  }
+
+  get nftPlotCount() {
+    return this.harvesters
+      .filter(harvester => harvester.nftPlots)
+      .reduce((acc, harvester) => acc.plus(harvester.nftPlots.count), new BigNumber(0)).toNumber();
+  }
+
+  get allHarvestersHavePlotStats() {
+    return this.harvesters.every(harvester => harvester.ogPlots && harvester.nftPlots);
+  }
+
+  get plotCountString() {
+    const ogPlotCount = this.ogPlotCount;
+    const nftPlotCount = this.nftPlotCount;
+    const plotCount = this.plotCount;
+    const allHarvestersHavePlotStats = this.allHarvestersHavePlotStats;
+    if (ogPlotCount === 0 && nftPlotCount === 0) {
+      return plotCount;
+    }
+    if (allHarvestersHavePlotStats && ogPlotCount === 0) {
+      return `${plotCount} (NFT)`;
+    }
+    if (allHarvestersHavePlotStats && nftPlotCount === 0) {
+      return `${plotCount} (OG)`;
+    }
+    return `${plotCount} (OG: ${ogPlotCount} | NFT: ${nftPlotCount})`;
+  }
+
   get networkSpace() {
     if (!this.bestBlockchainState) {
       return 'N/A';
