@@ -106,6 +106,6 @@ export class HarvesterComponent implements OnInit {
       return `${this.plotCount} Plots (OG)`;
     }
 
-    return `${this.plotCount} Plots (OG: ${this.ogPlots.count} | NFT: ${this.nftPlots.const})`;
+    return `${this.plotCount} Plots (OG: ${this.ogPlots.count} | NFT: ${this.nftPlots.count})`;
   }
 }
