@@ -37,7 +37,7 @@
     "humanize-duration": "^3.27.0",
     "moment": "^2.29.1",
     "ngx-clipboard": "^14.0.1",
-    "ngx-echarts": "^6.0.1",
+    "ngx-echarts": "^8.0.0",
     "ngx-scrolltop": "^2.4.0",
     "ngx-toastr": "^13.2.1",
     "rxjs": "^6.6.7",
