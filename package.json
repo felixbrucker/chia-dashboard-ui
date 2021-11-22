@@ -36,7 +36,7 @@
     "fuse.js": "^6.4.6",
     "humanize-duration": "^3.27.0",
     "moment": "^2.29.1",
-    "ngx-clipboard": "^14.0.1",
+    "ngx-clipboard": "^14.0.2",
     "ngx-echarts": "^6.0.1",
     "ngx-scrolltop": "^2.4.0",
     "ngx-toastr": "^13.2.1",
