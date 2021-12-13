@@ -6265,12 +6265,12 @@ ngx-clipboard@^14.0.1:
     ngx-window-token ">=4.0.0"
     tslib "^2.0.0"
 
-ngx-echarts@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ngx-echarts/-/ngx-echarts-6.0.1.tgz#676fd1b0d348ac76545545f37edd7c737e6c411f"
-  integrity sha512-a9MZ8cHC7oD+c6Tl0ABAEM2inD+k4FHhuu7RnH6/34c10TJ7AFeQwrFbP6BgW39M9gViWozAjCRFmrvWOYv2Wg==
+ngx-echarts@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/ngx-echarts/-/ngx-echarts-8.0.1.tgz#413428a3693bfd2685158b1d169a67ad1d556e74"
+  integrity sha512-CP+WnCcnMCNpCL9BVmDIZmhGSVPnkJhhFbQEKt0nrwV0L6d4QTAGZ+e4y6G1zTTFKkIMPHpaO0nhtDRgSXAW/w==
   dependencies:
-    tslib "^2.0.0"
+    tslib "^2.3.0"
 
 ngx-scrolltop@^2.4.0:
   version "2.4.0"
@@ -9107,7 +9107,7 @@ tslib@2.0.3:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.3.tgz#8e0741ac45fc0c226e58a17bfc3e64b9bc6ca61c"
   integrity sha512-uZtkfKblCEQtZKBF6EBXVZeQNl82yqtDQdv+eck8u7tdPxjLu2/lp5/uPW+um2tpuxINHWy3GhiccY7QgEaVHQ==
 
-tslib@2.1.0, tslib@^2.0.0:
+tslib@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
@@ -9116,6 +9116,11 @@ tslib@^1.10.0, tslib@^1.13.0, tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.0.0, tslib@^2.3.0:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
+  integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
 tslint@~6.1.3:
   version "6.1.3"
