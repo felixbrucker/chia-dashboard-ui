@@ -58,10 +58,10 @@ export class StateService {
       this.isInitialLoading = false;
     }
     if (!this.updateSatellitesInterval && enablePeriodicUpdates) {
-      this.updateSatellitesInterval = setInterval(this.updateSatellites.bind(this), 15 * 1000);
+      this.updateSatellitesInterval = setInterval(this.updateSatellites.bind(this), 30 * 1000);
     }
     if (!this.updateRatesInterval && enablePeriodicUpdates) {
-      this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 10 * 1000);
+      this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 60 * 1000);
     }
     this.isInitialized = true;
     this.isInitializing = false;
@@ -78,10 +78,10 @@ export class StateService {
       this.isInitialLoading = false;
     }
     if (!this.updateSatellitesInterval && enablePeriodicUpdates) {
-      this.updateSatellitesInterval = setInterval(this.updateSharedSatellites.bind(this), 15 * 1000);
+      this.updateSatellitesInterval = setInterval(this.updateSharedSatellites.bind(this), 30 * 1000);
     }
     if (!this.updateRatesInterval && enablePeriodicUpdates) {
-      this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 10 * 1000);
+      this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 60 * 1000);
     }
     this.isInitialized = true;
     this.isInitializing = false;
