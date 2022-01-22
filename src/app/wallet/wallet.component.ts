@@ -47,15 +47,12 @@ export class WalletComponent implements OnInit {
 
   get wallets() {
     return this.wallet.wallets.map(wallet => {
-      const spendableBalance = new ChiaAmount(wallet.balance.spendable);
       const unconfirmedBalance = new ChiaAmount(wallet.balance.unconfirmed);
 
       return {
         type: wallet.type,
         name: wallet.name,
         balance: {
-          spendable: spendableBalance.toString(),
-          pending: unconfirmedBalance.amountBN.minus(spendableBalance.amountBN).toString(),
           total: unconfirmedBalance.toString(),
         },
       };
