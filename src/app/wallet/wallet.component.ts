@@ -56,7 +56,7 @@ export class WalletComponent implements OnInit {
           total: unconfirmedBalance.toString(),
         },
       };
-    });
+    }).filter(wallet => wallet.type !== 6);
   }
 
   get totalBalance() {
