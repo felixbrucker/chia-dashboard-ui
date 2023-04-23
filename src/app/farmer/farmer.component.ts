@@ -16,21 +16,16 @@ export class FarmerComponent implements OnInit {
   public chartOptions: EChartsOption;
   public chartUpdateOptions: EChartsOption;
 
-  private _isShowingResponseTimeInMs: boolean
-
   public constructor(
     private stateService: StateService,
     private localStorageService: LocalStorageService,
-  ) {
-    this._isShowingResponseTimeInMs = JSON.parse(localStorageService.getItem('isShowingResponseTimeInMs')) ?? true
-  }
+  ) {}
 
   private get isShowingResponseTimeInMs(): boolean {
-    return this._isShowingResponseTimeInMs
+    return JSON.parse(this.localStorageService.getItem('isShowingResponseTimeInMs')) ?? true
   }
 
   private set isShowingResponseTimeInMs(isShowingResponseTimeInMs: boolean) {
-    this._isShowingResponseTimeInMs = isShowingResponseTimeInMs
     this.localStorageService.setItem('isShowingResponseTimeInMs', JSON.stringify(isShowingResponseTimeInMs))
   }
 
