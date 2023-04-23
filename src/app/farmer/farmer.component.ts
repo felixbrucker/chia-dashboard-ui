@@ -41,7 +41,7 @@ export class FarmerComponent implements OnInit {
   ngOnInit(): void {
     this.chartOptions = {
       grid: {
-        left: 20,
+        left: 22,
         top: 5,
         right: 1,
         bottom: 20,
