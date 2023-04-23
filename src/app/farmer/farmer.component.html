@@ -1,7 +1,34 @@
 <div class="card">
   <div class="card-header d-flex justify-content-between">
     <h5>Farmer ({{satelliteName}})</h5>
-    <h5 [class]="colorClassForSyncStatus">{{status}}</h5>
+    <h5>
+      <span [class]="colorClassForSyncStatus">{{status}}</span>
+      <ng-template #settingsContent>
+        <div class="mb-1">
+          Response time color scheme:
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="responseTimeColorSchemeStrict" name="responseTimeColorSchemeStrict" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.strict">
+          <label class="custom-control-label" for="responseTimeColorSchemeStrict">Strict</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="responseTimeColorSchemeRegular" name="responseTimeColorSchemeRegular" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.regular">
+          <label class="custom-control-label" for="responseTimeColorSchemeRegular">Regular</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="responseTimeColorSchemeRelaxed" name="responseTimeColorSchemeRelaxed" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.relaxed">
+          <label class="custom-control-label" for="responseTimeColorSchemeRelaxed">Relaxed</label>
+        </div>
+      </ng-template>
+      <fa-icon
+        class="ml-2"
+        [icon]="faEllipsisV"
+        size="sm"
+        style="cursor: pointer"
+        [ngbPopover]="settingsContent"
+        [autoClose]="'outside'"
+      ></fa-icon>
+    </h5>
   </div>
   <div class="card-body farmer-card">
     <div echarts [options]="chartOptions" [merge]="chartUpdateOptions" theme="default" class="farming-info-chart"></div>

@@ -5,6 +5,7 @@ import {EChartsOption} from 'echarts';
 import {StateService} from '../state.service';
 import BigNumber from 'bignumber.js';
 import {LocalStorageService} from '../local-storage.service'
+import {faEllipsisV} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-farmer',
@@ -13,6 +14,8 @@ import {LocalStorageService} from '../local-storage.service'
 })
 export class FarmerComponent implements OnInit {
   @Input() farmer: any;
+
+  public readonly faEllipsisV = faEllipsisV
   public chartOptions: EChartsOption;
   public chartUpdateOptions: EChartsOption;
 
@@ -127,16 +130,37 @@ export class FarmerComponent implements OnInit {
 
   getColorClassForResponseTime(responseTimeMs) {
     if (responseTimeMs === null) {
-      return '';
+      return ''
     }
-    if (responseTimeMs >= 5000) {
-      return 'color-red';
-    }
-    if (responseTimeMs >= 2500) {
-      return 'color-orange';
-    }
+    switch (this.responseTimeColorScheme) {
+      case ResponseTimeColorScheme.strict:
+        if (responseTimeMs >= 5000) {
+          return 'color-red'
+        }
+        if (responseTimeMs >= 2500) {
+          return 'color-orange'
+        }
 
-    return 'color-green';
+        return 'color-green'
+      case ResponseTimeColorScheme.regular:
+        if (responseTimeMs >= 10000) {
+          return 'color-red'
+        }
+        if (responseTimeMs >= 5000) {
+          return 'color-orange'
+        }
+
+        return 'color-green'
+      case ResponseTimeColorScheme.relaxed:
+        if (responseTimeMs >= 20000) {
+          return 'color-red'
+        }
+        if (responseTimeMs >= 10000) {
+          return 'color-orange'
+        }
+
+        return 'color-green'
+    }
   }
 
   get passedFilter() {
@@ -194,4 +218,28 @@ export class FarmerComponent implements OnInit {
   get lastUpdatedState() {
     return getStateForLastUpdated(this.farmer.lastUpdate);
   }
+
+  public get responseTimeColorScheme(): ResponseTimeColorScheme {
+    if (this.farmer === undefined) {
+      return ResponseTimeColorScheme.strict
+    }
+
+    return ResponseTimeColorScheme[this.localStorageService.getItem(`${this.farmer.satelliteId}/responseTimeColorScheme`) ?? ResponseTimeColorScheme.strict]
+  }
+
+  public set responseTimeColorScheme(responseTimeColorScheme: ResponseTimeColorScheme) {
+    if (this.farmer === undefined) {
+      return
+    }
+
+    this.localStorageService.setItem(`${this.farmer.satelliteId}/responseTimeColorScheme`, responseTimeColorScheme)
+  }
+
+  protected readonly ResponseTimeColorScheme = ResponseTimeColorScheme
+}
+
+enum ResponseTimeColorScheme {
+  strict = 'strict',
+  regular = 'regular',
+  relaxed = 'relaxed',
 }
