@@ -4,6 +4,7 @@ import {getStateForLastUpdated} from '../state-util';
 import {EChartsOption} from 'echarts';
 import {StateService} from '../state.service';
 import BigNumber from 'bignumber.js';
+import {LocalStorageService} from '../local-storage.service'
 
 @Component({
   selector: 'app-farmer',
@@ -15,7 +16,27 @@ export class FarmerComponent implements OnInit {
   public chartOptions: EChartsOption;
   public chartUpdateOptions: EChartsOption;
 
-  constructor(private stateService: StateService) {}
+  private _isShowingResponseTimeInMs: boolean
+
+  public constructor(
+    private stateService: StateService,
+    private localStorageService: LocalStorageService,
+  ) {
+    this._isShowingResponseTimeInMs = JSON.parse(localStorageService.getItem('isShowingResponseTimeInMs')) ?? true
+  }
+
+  private get isShowingResponseTimeInMs(): boolean {
+    return this._isShowingResponseTimeInMs
+  }
+
+  private set isShowingResponseTimeInMs(isShowingResponseTimeInMs: boolean) {
+    this._isShowingResponseTimeInMs = isShowingResponseTimeInMs
+    this.localStorageService.setItem('isShowingResponseTimeInMs', JSON.stringify(isShowingResponseTimeInMs))
+  }
+
+  public toggleIsShowingResponseTimeInMs() {
+    this.isShowingResponseTimeInMs = !this.isShowingResponseTimeInMs
+  }
 
   ngOnInit(): void {
     this.chartOptions = {
@@ -77,8 +98,11 @@ export class FarmerComponent implements OnInit {
     if (averageHarvesterResponseTime === null) {
       return 'N/A';
     }
+    if (this.isShowingResponseTimeInMs) {
+      return `${averageHarvesterResponseTime.toFixed(0)} ms`
+    }
 
-    return `${averageHarvesterResponseTime.toFixed(0)} ms`;
+    return `${(averageHarvesterResponseTime / 1000).toFixed(1)} sec`
   }
 
   get worstHarvesterResponseTime() {
@@ -99,8 +123,11 @@ export class FarmerComponent implements OnInit {
     if (worstHarvesterResponseTime === null) {
       return 'N/A';
     }
+    if (this.isShowingResponseTimeInMs) {
+      return `${worstHarvesterResponseTime.toFixed(0)} ms`
+    }
 
-    return `${worstHarvesterResponseTime.toFixed(0)} ms`;
+    return `${(worstHarvesterResponseTime / 1000).toFixed(1)} sec`
   }
 
   getColorClassForResponseTime(responseTimeMs) {
