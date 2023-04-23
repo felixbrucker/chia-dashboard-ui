@@ -8,13 +8,13 @@
     <div class="row">
       <div class="col-12 col-sm-6">
         <div class="d-flex justify-content-between">
-          <div class="card-font-size" placement="bottom" ngbTooltip="The average harvester response time in milliseconds">Average RT</div>
+          <div class="card-font-size" placement="bottom" ngbTooltip="The average harvester response time in milliseconds/seconds">Average RT</div>
           <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(averageHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{averageHarvesterResponseTimeFormatted}}</div>
         </div>
       </div>
       <div class="col-12 col-sm-6">
         <div class="d-flex justify-content-between">
-          <div class="card-font-size" placement="bottom" ngbTooltip="The worst harvester response time in milliseconds">Worst RT</div>
+          <div class="card-font-size" placement="bottom" ngbTooltip="The worst harvester response time in milliseconds/seconds">Worst RT</div>
           <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(worstHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{worstHarvesterResponseTimeFormatted}}</div>
         </div>
       </div>
