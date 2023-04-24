@@ -35,7 +35,7 @@
   width: 100vw;
   z-index: 1030;
   padding-left: 1em;
-  padding-right: 2em;
+  padding-right: 3em;
 }
 @media (min-width: 1700px) {
   .sticky-navbar {
@@ -46,7 +46,7 @@
 
 @media (min-width: 1800px) {
   .sticky-navbar {
-    padding-left: 7%;
-    padding-right: 7%;
+    padding-left: 4%;
+    padding-right: 4%;
   }
 }

@@ -72,3 +72,11 @@ span[red] {
 .color-blue {
   color: $color-blue;
 }
+.fa-spin-slow {
+  -webkit-animation: fa-spin 3s infinite linear;
+  animation: fa-spin 3s infinite linear;
+}
+.fa-spin-fast {
+  -webkit-animation: fa-spin 1s infinite linear;
+  animation: fa-spin 1s infinite linear;
+}

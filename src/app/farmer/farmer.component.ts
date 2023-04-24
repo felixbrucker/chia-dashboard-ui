@@ -175,12 +175,12 @@ export class FarmerComponent implements OnInit {
     if (this.farmer.farmingInfos.length === 0) {
       return false;
     }
-    const wasRecentlyUpdated = moment().diff(this.farmer.lastUpdate, 'minutes') < 2;
+    const wasRecentlyUpdated = moment().diff(this.farmer.lastUpdate, 'minutes') < 4;
     if (!wasRecentlyUpdated) {
       return null;
     }
 
-    return moment().diff(moment(this.farmer.farmingInfos[0].lastUpdated), 'minutes') < 2;
+    return moment().diff(moment(this.farmer.farmingInfos[0].lastUpdated), 'minutes') < 4;
   }
 
   get status() {

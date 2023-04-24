@@ -12,7 +12,6 @@ function randomArrayPosition<T>(array: T[]): T {
   return array[Math.floor(Math.random() * array.length)]
 }
 export const apiBaseUrl = randomArrayPosition(apiBaseUrls)
-export const enablePeriodicUpdates = true;
 export const requestDiscordGuildPermission = true;
 
 // DEV

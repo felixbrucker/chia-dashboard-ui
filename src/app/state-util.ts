@@ -2,10 +2,10 @@ import * as moment from 'moment';
 
 export function getStateForLastUpdated(lastUpdated) {
   const diff = moment().diff(lastUpdated, 'minutes');
-  if (diff < 3) {
+  if (diff < 4) {
     return 0;
   }
-  if (diff < 7) {
+  if (diff < 8) {
     return 1;
   }
 

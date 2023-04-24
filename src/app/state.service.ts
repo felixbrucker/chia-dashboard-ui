@@ -1,11 +1,13 @@
-import {Injectable} from "@angular/core";
-import {ApiService} from './api.service';
-import {ToastService} from './toast.service';
-import {Subject} from 'rxjs';
-import {enablePeriodicUpdates} from './config';
-import {LocalStorageService} from './local-storage.service';
-import {SatelliteReleasesService} from './satellite-releases.service';
-import * as semverLt from 'semver/functions/lt';
+import {Injectable} from '@angular/core'
+import {ApiService} from './api.service'
+import {ToastService} from './toast.service'
+import {Subject} from 'rxjs'
+import * as moment from 'moment'
+import {Moment} from 'moment'
+import {LocalStorageService} from './local-storage.service'
+import {SatelliteReleasesService} from './satellite-releases.service'
+import * as semverLt from 'semver/functions/lt'
+import {AutoUpdateMode, getIntervalInSeconds} from './auto-update-mode'
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,7 @@ export class StateService {
   public satellites: any[] = [];
   public stateUpdated = new Subject();
   public bestBlockchainState: any = null;
-  private updateSatellitesInterval: any;
+  private updateSatellitesInterval: number|undefined
   private updateRatesInterval: any;
   public isInitialLoading: boolean = true;
   public rates = {};
@@ -28,8 +30,11 @@ export class StateService {
   public farmers = [];
   public plotters = [];
 
+  public nextUpdateAt: Moment|undefined
+
   private isInitialized = false;
   private isInitializing = false;
+  private isShared = false
 
   constructor(
     private apiService: ApiService,
@@ -57,10 +62,10 @@ export class StateService {
     } finally {
       this.isInitialLoading = false;
     }
-    if (!this.updateSatellitesInterval && enablePeriodicUpdates) {
-      this.updateSatellitesInterval = setInterval(this.updateSatellites.bind(this), 30 * 1000);
+    if (!this.updateSatellitesInterval) {
+      this.autoUpdateMode = AutoUpdateMode[this.localStorageService.getItem('autoUpdateMode') ?? AutoUpdateMode.regular]
     }
-    if (!this.updateRatesInterval && enablePeriodicUpdates) {
+    if (!this.updateRatesInterval) {
       this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 60 * 1000);
     }
     this.isInitialized = true;
@@ -71,20 +76,38 @@ export class StateService {
     if (this.isInitialized || this.isInitializing) {
       return;
     }
+    this.isShared = true
     this.isInitializing = true;
     try {
       await this.initSharedState();
     } finally {
       this.isInitialLoading = false;
     }
-    if (!this.updateSatellitesInterval && enablePeriodicUpdates) {
-      this.updateSatellitesInterval = setInterval(this.updateSharedSatellites.bind(this), 30 * 1000);
+    if (!this.updateSatellitesInterval) {
+      this.autoUpdateMode = AutoUpdateMode[this.localStorageService.getItem('autoUpdateMode') ?? AutoUpdateMode.regular]
     }
-    if (!this.updateRatesInterval && enablePeriodicUpdates) {
+    if (!this.updateRatesInterval) {
       this.updateRatesInterval = setInterval(this.updateRates.bind(this), 5 * 60 * 1000);
     }
     this.isInitialized = true;
     this.isInitializing = false;
+  }
+
+  public set autoUpdateMode(autoUpdateMode: AutoUpdateMode) {
+    if (this.updateSatellitesInterval !== undefined) {
+      clearInterval(this.updateSatellitesInterval)
+    }
+    if (autoUpdateMode === AutoUpdateMode.off) {
+      this.nextUpdateAt = undefined
+
+      return
+    }
+    const intervalInSeconds = getIntervalInSeconds(autoUpdateMode)
+    this.nextUpdateAt = moment().add(intervalInSeconds, 'seconds')
+    this.updateSatellitesInterval = setInterval(() => {
+      this.nextUpdateAt = moment().add(intervalInSeconds, 'seconds')
+      void (this.isShared ? this.updateSharedSatellites() : this.updateSatellites())
+    }, intervalInSeconds * 1000)
   }
 
   async initState() {
@@ -104,8 +127,8 @@ export class StateService {
 
   clear() {
     if (this.updateSatellitesInterval) {
-      clearInterval(this.updateSatellitesInterval);
-      this.updateSatellitesInterval = null;
+      clearInterval(this.updateSatellitesInterval)
+      this.updateSatellitesInterval = undefined
     }
     if (this.updateRatesInterval) {
       clearInterval(this.updateRatesInterval);
@@ -196,7 +219,7 @@ export class StateService {
     if (this.updateSatellitesInterval) {
       clearInterval(this.updateSatellitesInterval);
     }
-    this.updateSatellitesInterval = null;
+    this.updateSatellitesInterval = undefined;
     await this.apiService.logout();
   }
 
