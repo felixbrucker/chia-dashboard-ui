@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import BigNumber from 'bignumber.js';
+import {BigNumber} from 'bignumber.js';
 import * as moment from 'moment';
 import Capacity from '../capacity';
 import {getStateForLastUpdated} from '../state-util';
@@ -74,12 +74,20 @@ export class FarmSummaryComponent implements OnInit {
     return services.map(service => getStateForLastUpdated(service.lastUpdate));
   }
 
-  get formattedCapacity() {
-    return new Capacity(this.capacityInGib).toString();
+  public get formattedRawCapacity(): string {
+    return new Capacity(this.rawCapacityInGib).toString();
   }
 
-  get capacityInGib() {
-    return this.harvesters.reduce((acc, harvester) => acc.plus(harvester.totalCapacityInGib), new BigNumber(0));
+  private get rawCapacityInGib(): BigNumber {
+    return this.harvesters.reduce((acc, harvester) => acc.plus(harvester.totalRawPlotCapacityInGib || harvester.totalCapacityInGib), new BigNumber(0))
+  }
+
+  public get formattedEffectiveCapacity(): string {
+    return new Capacity(this.effectiveCapacityInGib).toString();
+  }
+
+  private get effectiveCapacityInGib(): BigNumber {
+    return this.harvesters.reduce((acc, harvester) => acc.plus(harvester.totalEffectivePlotCapacityInGib || harvester.totalCapacityInGib), new BigNumber(0))
   }
 
   get plotCount() {
@@ -144,11 +152,11 @@ export class FarmSummaryComponent implements OnInit {
     if (!this.bestBlockchainState) {
       return 'N/A';
     }
-    if (this.capacityInGib.isZero()) {
+    if (this.effectiveCapacityInGib.isZero()) {
       return 'N/A';
     }
     const networkSpace = new Capacity(this.bestBlockchainState.spaceInGib).capacityInGib;
-    const capacity = this.capacityInGib;
+    const capacity = this.effectiveCapacityInGib;
     const chanceToWinABlock = capacity.dividedBy(networkSpace);
     const avgBlocksTillWin = new BigNumber(1).dividedBy(chanceToWinABlock);
     const blocksPerDay = new BigNumber(BLOCKS_PER_DAY);
@@ -159,7 +167,7 @@ export class FarmSummaryComponent implements OnInit {
   }
 
   get dailyRewardXch() {
-    const dailyReward = this.dailyRewardXcBighNumber;
+    const dailyReward = this.dailyRewardXchBigNumber;
     if (dailyReward == null) {
       return 'N/A';
     }
@@ -167,12 +175,12 @@ export class FarmSummaryComponent implements OnInit {
     return `≈ ${dailyReward.toFixed(2)} XCH`;
   }
 
-  get dailyRewardXcBighNumber() {
-    if (!this.bestBlockchainState || this.capacityInGib.isZero()) {
+  get dailyRewardXchBigNumber() {
+    if (!this.bestBlockchainState || this.effectiveCapacityInGib.isZero()) {
       return null;
     }
     const networkSpace = new Capacity(this.bestBlockchainState.spaceInGib).capacityInGib;
-    const capacity = this.capacityInGib;
+    const capacity = this.effectiveCapacityInGib;
     const chanceToWinABlock = capacity.dividedBy(networkSpace);
     const avgBlocksTillWin = new BigNumber(1).dividedBy(chanceToWinABlock);
     const blocksPerDay = new BigNumber(BLOCKS_PER_DAY);
@@ -185,7 +193,7 @@ export class FarmSummaryComponent implements OnInit {
     if (this.rate === null) {
       return 'N/A';
     }
-    const dailyRewardXch = this.dailyRewardXcBighNumber;
+    const dailyRewardXch = this.dailyRewardXchBigNumber;
     if (dailyRewardXch == null) {
       return 'N/A';
     }

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {getStateForLastUpdated} from '../state-util';
 import Capacity from '../capacity';
 import * as moment from 'moment';
-import BigNumber from 'bignumber.js';
+import {BigNumber} from 'bignumber.js';
 
 @Component({
   selector: 'app-harvester',
@@ -53,12 +53,20 @@ export class HarvesterComponent implements OnInit {
     return this.harvester.plotCount;
   }
 
-  get capacity() {
-    return new Capacity(this.capacityInGib).toString();
+  public get formattedRawCapacity(): string {
+    return new Capacity(this.rawCapacityInGib).toString();
   }
 
-  get capacityInGib() {
-    return new BigNumber(this.harvester.totalCapacityInGib);
+  private get rawCapacityInGib(): BigNumber {
+    return new BigNumber(this.harvester.totalRawPlotCapacityInGib || this.harvester.totalCapacityInGib)
+  }
+
+  public get formattedEffectiveCapacity(): string {
+    return new Capacity(this.effectiveCapacityInGib).toString();
+  }
+
+  private get effectiveCapacityInGib(): BigNumber {
+    return new BigNumber(this.harvester.totalEffectivePlotCapacityInGib || this.harvester.totalCapacityInGib)
   }
 
   get lastUpdatedBefore() {
@@ -73,11 +81,11 @@ export class HarvesterComponent implements OnInit {
     if (!this.bestBlockchainState) {
       return 'N/A';
     }
-    if (this.capacityInGib.isZero()) {
-      return 'N/A';
+    if (this.effectiveCapacityInGib.isZero()) {
+      return 'N/A'
     }
     const networkSpace = new Capacity(this.bestBlockchainState.spaceInGib).capacityInGib;
-    const capacity = this.capacityInGib;
+    const capacity = this.effectiveCapacityInGib
     const chanceToWinABlock = capacity.dividedBy(networkSpace);
     const avgBlocksTillWin = new BigNumber(1).dividedBy(chanceToWinABlock);
     const blocksPerDay = new BigNumber(4608);
