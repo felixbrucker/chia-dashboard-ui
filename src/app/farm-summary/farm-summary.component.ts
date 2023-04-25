@@ -31,7 +31,7 @@ export class FarmSummaryComponent implements OnInit {
       return false;
     }
 
-    return moment().diff(moment(farmer.farmingInfos[0].lastUpdated), 'minutes') < 2;
+    return moment().diff(moment(farmer.farmingInfos[0].lastUpdated), 'minutes') < 4;
   }
 
   isFullNodeSynced(fullNode) {
