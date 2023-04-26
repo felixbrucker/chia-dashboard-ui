@@ -5,6 +5,7 @@ import {ToastService} from '../toast.service';
 import {WINDOW} from '../window.provider';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import {Router} from '@angular/router';
+import {LocalStorageService} from '../local-storage.service'
 
 @Component({
   selector: 'app-profile',
@@ -20,6 +21,7 @@ export class ProfileComponent implements OnInit {
     private toastService: ToastService,
     @Inject(WINDOW) private window: Window,
     private router: Router,
+    private localStorageService: LocalStorageService
   ) { }
 
   async ngOnInit() {
@@ -35,7 +37,7 @@ export class ProfileComponent implements OnInit {
   }
 
   get shareUrl() {
-    return `${this.window.location.protocol}//${this.window.location.host}/shared/${this.user.shareKey}`;
+    return `${this.window.location.protocol}//${this.window.location.host}/shared/${this.user?.shareKey}`;
   }
 
   async toggleShared() {
@@ -43,5 +45,13 @@ export class ProfileComponent implements OnInit {
     await this.apiService.updateUser({ data: { isShared } });
     this.toastService.showSuccessToast(`Dashboard is ${isShared ? 'shared' : 'not shared anymore'} now!`);
     await this.stateService.updateUser();
+  }
+
+  public get hideDismissedUpdateNotifications(): boolean {
+    return JSON.parse(this.localStorageService.getItem('hideDismissedUpdateNotifications')) ?? false
+  }
+
+  public set hideDismissedUpdateNotifications(hideDismissedUpdateNotifications: boolean) {
+    this.localStorageService.setItem('hideDismissedUpdateNotifications', JSON.stringify(hideDismissedUpdateNotifications))
   }
 }

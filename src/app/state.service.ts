@@ -8,6 +8,7 @@ import {LocalStorageService} from './local-storage.service'
 import {SatelliteReleasesService} from './satellite-releases.service'
 import * as semverLt from 'semver/functions/lt'
 import {AutoUpdateMode, getIntervalInSeconds} from './auto-update-mode'
+import {take} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root',
@@ -144,12 +145,28 @@ export class StateService {
     }
     const outdatedSatellites = this.satellites
       .filter(satellite => !satellite.hidden)
-      .filter(satellite => satellite.version && semverLt(satellite.version, latestSatelliteVersion));
-    outdatedSatellites.forEach(satellite => {
-      this.toastService.showWarningConfirmToast(
+      .filter(satellite => satellite.version && semverLt(satellite.version, latestSatelliteVersion))
+    if (outdatedSatellites.length === 0) {
+      return
+    }
+    let outdatedSatellitesToNotify = outdatedSatellites
+    if (this.hideDismissedUpdateNotifications) {
+      outdatedSatellitesToNotify = outdatedSatellites
+        .filter(satellite => !this.wasSatelliteNotificationDismissedBefore(satellite._id, latestSatelliteVersion))
+    }
+    outdatedSatellitesToNotify.forEach(satellite => {
+      const toast = this.toastService.showWarningConfirmToast(
         `Satellite ${satellite.name} is running v${satellite.version}, please consider upgrading to v${latestSatelliteVersion}.`,
         'Satellite update available'
-      );
+      )
+      toast
+        .onHidden
+        .pipe(take(1))
+        .subscribe(() => {
+          if (this.hideDismissedUpdateNotifications) {
+            this.markSatelliteNotificationAsDismissed(satellite._id, latestSatelliteVersion)
+          }
+        })
     });
   }
 
@@ -261,5 +278,17 @@ export class StateService {
     }
 
     return this.rates[this.selectedCurrency];
+  }
+
+  private get hideDismissedUpdateNotifications(): boolean {
+    return JSON.parse(this.localStorageService.getItem('hideDismissedUpdateNotifications')) ?? false
+  }
+
+  private wasSatelliteNotificationDismissedBefore(satelliteId: string, version: string): boolean {
+    return JSON.parse(this.localStorageService.getItem(`dismissed-update-notification/satellite/${satelliteId}/version/${version}`)) ?? false
+  }
+
+  private markSatelliteNotificationAsDismissed(satelliteId: string, version: string) {
+    this.localStorageService.setItem(`dismissed-update-notification/satellite/${satelliteId}/version/${version}`, JSON.stringify(true))
   }
 }

@@ -1,5 +1,7 @@
 import {ToastrService} from 'ngx-toastr';
 import {Injectable} from '@angular/core';
+import {ActiveToast} from 'ngx-toastr/toastr/toastr.service'
+import {IndividualConfig} from 'ngx-toastr/toastr/toastr-config'
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +36,13 @@ export class ToastService {
     this.toastr.error(msg, title, options);
   }
 
-  showWarningConfirmToast(msg, title = '', options = {}) {
+  public showWarningConfirmToast(msg: string, title = '', options: Partial<IndividualConfig> = {}): ActiveToast<any> {
     options = Object.assign({
       disableTimeOut: true,
       tapToDismiss: true,
       closeButton: true,
     }, options);
-    this.toastr.warning(msg, title, options);
+
+    return this.toastr.warning(msg, title, options);
   }
 }
