@@ -55,6 +55,18 @@ export class DashboardComponent implements OnInit {
     return this.stateService.wallets;
   }
 
+  public get hasWallets(): boolean {
+    return this.wallets.length > 0
+  }
+
+  public get farmSummaryClasses(): string {
+    if (this.hasWallets) {
+      return 'col-md-6 col-lg-8 col-xl-8 col-xxl-18'
+    }
+
+    return 'col-md-12 col-lg-12 col-xl-12 col-xxl-24'
+  }
+
   get fullNodes() {
     return this.stateService.fullNodes;
   }
