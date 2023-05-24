@@ -7,7 +7,22 @@
     <h6 class="card-subtitle mb-2 text-muted">Synced to {{syncedHeight}}</h6>
     <div *ngFor="let wallet of wallets; trackBy: trackBy" class="d-flex justify-content-between">
       <div class="card-font-size">{{wallet.name}}</div>
-      <div class="card-font-size" [class.font-weight-bold]="wallets.length === 1" placement="bottom" ngbTooltip="{{getBalanceFiat(wallet)}}">{{getRoundedBalance(wallet.balance.total)}} XCH</div>
+      <div
+        *ngIf="wallet.isChiaWallet"
+        class="card-font-size"
+        [class.font-weight-bold]="wallets.length === 1"
+        placement="bottom"
+        ngbTooltip="{{getBalanceFiat(wallet)}}"
+      >
+        {{getRoundedBalance(wallet.balance.total)}} XCH
+      </div>
+      <div
+        *ngIf="!wallet.isChiaWallet"
+        class="card-font-size"
+        [class.font-weight-bold]="wallets.length === 1"
+      >
+        {{getRoundedBalance(wallet.balance.total)}}
+      </div>
     </div>
     <hr *ngIf="wallets.length > 1">
     <div *ngIf="wallets.length > 1" class="d-flex justify-content-between">

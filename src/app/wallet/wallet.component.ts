@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import ChiaAmount from '../chia-amount';
 import * as moment from 'moment';
 import BigNumber from 'bignumber.js';
 import {getColorClassForSyncStatus, getStateForLastUpdated} from '../state-util';
+import {isChiaWallet} from '../wallet-type'
 
 @Component({
   selector: 'app-wallet',
@@ -47,20 +47,23 @@ export class WalletComponent implements OnInit {
 
   get wallets() {
     return this.wallet.wallets.map(wallet => {
-      const unconfirmedBalance = new ChiaAmount(wallet.balance.unconfirmed);
-
       return {
         type: wallet.type,
         name: wallet.name,
         balance: {
-          total: unconfirmedBalance.toString(),
+          total: wallet.balance.unconfirmed,
         },
+        isChiaWallet: isChiaWallet(wallet.type),
       };
-    }).filter(wallet => wallet.type !== 6);
+    })
+  }
+
+  private get chiaWallets() {
+    return this.wallets.filter(wallet => wallet.isChiaWallet)
   }
 
   get totalBalance() {
-    return this.wallets.reduce((acc, wallet) => acc.plus(wallet.balance.total), new BigNumber(0));
+    return this.chiaWallets.reduce((acc, wallet) => acc.plus(wallet.balance.total), new BigNumber(0));
   }
 
   get totalBalanceRounded() {

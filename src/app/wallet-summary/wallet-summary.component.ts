@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import BigNumber from 'bignumber.js';
 import * as moment from 'moment';
 import {getStateForLastUpdated} from '../state-util';
+import {isChiaWallet} from '../wallet-type'
 
 @Component({
   selector: 'app-wallet-summary',
@@ -20,11 +21,11 @@ export class WalletSummaryComponent implements OnInit {
   }
 
   get walletCount() {
-    return this.uniqueWallets.reduce((acc, curr) => acc + curr.wallets.filter(wallet => wallet.type !== 6).length, 0);
+    return this.uniqueWallets.reduce((acc, curr) => acc + curr.wallets.filter(wallet => isChiaWallet(wallet.type)).length, 0);
   }
 
   get totalBalance() {
-    return this.uniqueWallets.reduce((acc, wallet) => acc.plus(wallet.wallets.filter(wallet => wallet.type !== 6).reduce((subAcc, subWallet) => subAcc.plus(subWallet.balance.unconfirmed), new BigNumber(0))), new BigNumber(0));
+    return this.uniqueWallets.reduce((acc, wallet) => acc.plus(wallet.wallets.filter(wallet => isChiaWallet(wallet.type)).reduce((subAcc, subWallet) => subAcc.plus(subWallet.balance.unconfirmed), new BigNumber(0))), new BigNumber(0));
   }
 
   get totalBalanceFormatted() {
