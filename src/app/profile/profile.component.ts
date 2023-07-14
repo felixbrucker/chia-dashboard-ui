@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {StateService} from '../state.service';
 import {ApiService} from '../api.service';
 import {ToastService} from '../toast.service';
@@ -6,6 +6,7 @@ import {WINDOW} from '../window.provider';
 import { faCopy } from '@fortawesome/free-regular-svg-icons';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../local-storage.service'
+import {User} from '../api/types/user'
 
 @Component({
   selector: 'app-profile',
@@ -32,8 +33,8 @@ export class ProfileComponent implements OnInit {
     await this.stateService.init();
   }
 
-  get user() {
-    return this.stateService.user;
+  public get user(): User | undefined {
+    return this.stateService.user
   }
 
   get shareUrl() {
@@ -41,10 +42,10 @@ export class ProfileComponent implements OnInit {
   }
 
   async toggleShared() {
-    const isShared = !this.user.shareKey;
-    await this.apiService.updateUser({ data: { isShared } });
-    this.toastService.showSuccessToast(`Dashboard is ${isShared ? 'shared' : 'not shared anymore'} now!`);
-    await this.stateService.updateUser();
+    const isShared = !this.user.shareKey
+    await this.apiService.updateUser({ isShared })
+    this.toastService.showSuccessToast(`Dashboard is ${isShared ? 'shared' : 'not shared anymore'} now!`)
+    await this.stateService.updateUser()
   }
 
   public get hideDismissedUpdateNotifications(): boolean {

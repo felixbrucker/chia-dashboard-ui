@@ -7,6 +7,7 @@ import {faSync} from '@fortawesome/free-solid-svg-icons'
 import {AutoUpdateMode} from '../auto-update-mode'
 import {LocalStorageService} from '../local-storage.service'
 import * as moment from 'moment'
+import {User} from '../api/types/user'
 
 @Component({
   selector: 'app-header',
@@ -112,8 +113,8 @@ export class HeaderComponent {
     this.child.openModal();
   }
 
-  get user() {
-    return this.stateService.user;
+  public get user(): User|undefined {
+    return this.stateService.user
   }
 
   public get autoUpdateClass(): string|undefined {

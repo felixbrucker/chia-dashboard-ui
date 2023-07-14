@@ -9,20 +9,23 @@ import {SatelliteReleasesService} from './satellite-releases.service'
 import * as semverLt from 'semver/functions/lt'
 import {AutoUpdateMode, getIntervalInSeconds} from './auto-update-mode'
 import {take} from 'rxjs/operators'
+import {User} from './api/types/user'
+import {BlockchainState, Satellite} from './api/types/satellite'
+import {Rates} from './api/types/rates'
 
 @Injectable({
   providedIn: 'root',
 })
 export class StateService {
-  public user: any;
-  public satellites: any[] = [];
+  public user?: User
+  public satellites: Satellite[] = []
   public stateUpdated = new Subject();
-  public bestBlockchainState: any = null;
+  public bestBlockchainState: BlockchainState | null = null
   private updateSatellitesInterval: number|undefined
   private updateRatesInterval: any;
   public isInitialLoading: boolean = true;
-  public rates = {};
-  public currencies = [];
+  public rates: Rates['rates'] = {}
+  public currencies: Rates['currencies'] = []
   public selectedCurrency = null;
 
   public wallets = [];
@@ -213,8 +216,8 @@ export class StateService {
     this.currencies = currencies;
   }
 
-  getBestBlockchainState() {
-    return this.satellites.reduce((bestBlockchainState, satellite) => {
+  private getBestBlockchainState(): BlockchainState | null {
+    return this.satellites.reduce((bestBlockchainState: BlockchainState | null, satellite) => {
       if (!satellite.services
         || !satellite.services.fullNode
         || !satellite.services.fullNode.stats
@@ -231,7 +234,7 @@ export class StateService {
   }
 
   async logout() {
-    this.user = null;
+    this.user = undefined
     this.satellites = [];
     if (this.updateSatellitesInterval) {
       clearInterval(this.updateSatellitesInterval);

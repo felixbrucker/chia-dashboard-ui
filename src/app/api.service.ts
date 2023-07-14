@@ -1,9 +1,12 @@
 import {Injectable} from "@angular/core";
-import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios'
 import {LocalStorageService} from './local-storage.service';
 import {Router} from '@angular/router';
 import {apiBaseUrl} from './config';
 import * as moment from 'moment';
+import {User} from './api/types/user'
+import {Satellite, SatelliteWithApiKey} from './api/types/satellite'
+import {Rates} from './api/types/rates'
 
 @Injectable({
   providedIn: 'root',
@@ -108,15 +111,15 @@ export class ApiService {
     this.isAuthenticated = shareKey ? false : (!!this.accessToken && !!this.refreshToken);
   }
 
-  async getUser() {
-    return this.request({ url: 'me' });
+  public async getUser(): Promise<User> {
+    return this.request({ url: 'me' })
   }
 
-  async getSatellites() {
+  public async getSatellites(): Promise<Satellite[]> {
     return this.request({ url: 'satellites' });
   }
 
-  async createSatellite(name) {
+  public async createSatellite(name): Promise<SatelliteWithApiKey> {
     return this.request({ method: 'post', url: 'satellite', data: { name } });
   }
 
@@ -128,15 +131,15 @@ export class ApiService {
     return this.request({ method: 'patch', url: `satellite/${id}`, data });
   }
 
-  async updateUser({ data }) {
-    return this.request({ method: 'patch', url: 'me', data });
+  public async updateUser(options: UpdateUserOptions): Promise<void> {
+    return this.request({ method: 'patch', url: 'me', data: options });
   }
 
-  async getSharedSatellites() {
+  public async getSharedSatellites(): Promise<Satellite[]> {
     return this.request({ url: 'shared/satellites' });
   }
 
-  async getRates() {
+  public async getRates(): Promise<Rates> {
     // @ts-ignore
     return this.request({ url: 'rates', noToken: true });
   }
@@ -191,10 +194,10 @@ export class ApiService {
     };
   }
 
-  async request(config: AxiosRequestConfig) {
-    const { data } = await this.client(config);
+  private async request<T>(config: AxiosRequestConfig): Promise<T> {
+    const res: AxiosResponse<T> = await this.client(config)
 
-    return data;
+    return res.data
   }
 
   async logout() {
@@ -204,4 +207,8 @@ export class ApiService {
     this.isAuthenticated = false;
     await this.router.navigate(['/login']);
   }
+}
+
+export interface UpdateUserOptions {
+  isShared?: boolean
 }
