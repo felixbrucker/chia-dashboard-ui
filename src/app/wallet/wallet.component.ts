@@ -3,6 +3,11 @@ import * as moment from 'moment';
 import BigNumber from 'bignumber.js';
 import {getColorClassForSyncStatus, getStateForLastUpdated} from '../state-util';
 import {isChiaWallet} from '../wallet-type'
+import {faEyeSlash} from '@fortawesome/free-solid-svg-icons'
+import {EnrichedStats, StateService} from '../state.service'
+import {WalletStats} from '../api/types/satellite'
+import {ApiService} from '../api.service'
+import {DisabledWallet, User} from '../api/types/user'
 
 @Component({
   selector: 'app-wallet',
@@ -10,11 +15,29 @@ import {isChiaWallet} from '../wallet-type'
   styleUrls: ['./wallet.component.scss']
 })
 export class WalletComponent implements OnInit {
-  @Input() wallet: any;
+  @Input() wallet: EnrichedStats<WalletStats>
   @Input() rate: any;
   @Input() selectedCurrency: any;
 
-  constructor() { }
+  public readonly faEyeSlash = faEyeSlash
+
+  private get user(): User|undefined {
+    return this.stateService.user
+  }
+
+  private get disabledWallets(): DisabledWallet[] {
+    const disabledWalletsByFingerprint = this.user?.settings?.disabledWalletsByFingerprint
+    if (disabledWalletsByFingerprint === undefined) {
+      return []
+    }
+
+    return disabledWalletsByFingerprint[this.wallet.fingerprint] ?? []
+  }
+
+  public constructor(
+    private readonly stateService: StateService,
+    private readonly apiService: ApiService,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -45,16 +68,21 @@ export class WalletComponent implements OnInit {
     return getColorClassForSyncStatus(this.status);
   }
 
-  get wallets() {
-    return this.wallet.wallets.map(wallet => {
-      return {
-        type: wallet.type,
-        name: wallet.name,
-        balance: {
-          total: wallet.balance.unconfirmed,
-        },
-        isChiaWallet: isChiaWallet(wallet.type),
-      };
+  public get wallets(): WalletInfo[] {
+    const disabledWallets = this.disabledWallets
+
+    return this.wallet.wallets
+      .filter(wallet => disabledWallets.every(disabledWallet => disabledWallet.id !== wallet.id))
+      .map(wallet => {
+        return {
+          id: wallet.id,
+          type: wallet.type,
+          name: wallet.name,
+          balance: {
+            total: wallet.balance.unconfirmed,
+          },
+          isChiaWallet: isChiaWallet(wallet.type),
+        }
     })
   }
 
@@ -111,4 +139,29 @@ export class WalletComponent implements OnInit {
   get lastUpdatedState() {
     return getStateForLastUpdated(this.wallet.lastUpdate);
   }
+
+  public async hideWallet(wallet: WalletInfo) {
+    if (this.user.settings === undefined) {
+      this.user.settings = {}
+    }
+    if (this.user.settings.disabledWalletsByFingerprint === undefined) {
+      this.user.settings.disabledWalletsByFingerprint = {}
+    }
+    if (this.user.settings.disabledWalletsByFingerprint[this.wallet.fingerprint] === undefined) {
+      this.user.settings.disabledWalletsByFingerprint[this.wallet.fingerprint] = []
+    }
+    const disabledWallets = this.user.settings.disabledWalletsByFingerprint[this.wallet.fingerprint]
+    disabledWallets.push({ id: wallet.id, name: wallet.name })
+    await this.apiService.updateUser({ disabledWalletsByFingerprint: this.user.settings.disabledWalletsByFingerprint })
+  }
+}
+
+export interface WalletInfo {
+  id: number
+  name: string
+  type: number
+  balance: {
+    total: string
+  }
+  isChiaWallet: boolean
 }

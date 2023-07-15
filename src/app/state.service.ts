@@ -10,7 +10,14 @@ import * as semverLt from 'semver/functions/lt'
 import {AutoUpdateMode, getIntervalInSeconds} from './auto-update-mode'
 import {take} from 'rxjs/operators'
 import {User} from './api/types/user'
-import {BlockchainState, Satellite} from './api/types/satellite'
+import {
+  BlockchainState,
+  FarmerStats,
+  FullNodeStats,
+  HarvesterStats, PlotterStats,
+  Satellite,
+  WalletStats
+} from './api/types/satellite'
 import {Rates} from './api/types/rates'
 
 @Injectable({
@@ -28,11 +35,11 @@ export class StateService {
   public currencies: Rates['currencies'] = []
   public selectedCurrency = null;
 
-  public wallets = [];
-  public fullNodes = [];
-  public harvesters = [];
-  public farmers = [];
-  public plotters = [];
+  public wallets: EnrichedStats<WalletStats>[] = []
+  public fullNodes: EnrichedStats<FullNodeStats>[] = []
+  public harvesters: EnrichedStats<HarvesterStats>[] = []
+  public farmers: EnrichedStats<FarmerStats>[] = []
+  public plotters: EnrichedStats<PlotterStats>[] = []
 
   public nextUpdateAt: Moment|undefined
 
@@ -294,4 +301,11 @@ export class StateService {
   private markSatelliteNotificationAsDismissed(satelliteId: string, version: string) {
     this.localStorageService.setItem(`dismissed-update-notification/satellite/${satelliteId}/version/${version}`, JSON.stringify(true))
   }
+}
+
+export type EnrichedStats<T> = T & {
+  lastUpdate: string
+  satelliteName: string
+  satelliteId: string
+  satelliteUpdatedAt: string
 }

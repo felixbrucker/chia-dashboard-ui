@@ -21,6 +21,7 @@ export function isChiaWallet(walletType: WalletType): boolean {
     case WalletType.multiSig:
     case WalletType.custody:
     case WalletType.recoverable:
+    case WalletType.plotNft:
       return true
     default: return false
   }

@@ -36,3 +36,24 @@
     </div>
   </div>
 </div>
+<div class="row justify-content-center" style="padding-top: 1rem">
+  <div class="card col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-9">
+    <div class="card-body">
+      <h5 class="card-title">Disabled wallets</h5>
+      <div *ngFor="let disabledWallets of disabledWalletsByFingerprint | keyvalue">
+        <h6>
+          Wallets for fingerprint {{disabledWallets.key}}
+        </h6>
+        <ul class="list-group">
+          <li class="list-group-item dark-theme d-flex justify-content-between" *ngFor="let disabledWallet of disabledWallets.value">
+            {{ disabledWallet.name}}
+            <button (click)="removeDisabledWallet(disabledWallets.key, disabledWallet)" class="btn btn-dark">
+              <fa-icon [icon]="faEye" class="fa toggle-hidden-icon"></fa-icon>
+              Show again
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

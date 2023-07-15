@@ -1,5 +1,10 @@
+export interface DisabledWallet {
+  id: number
+  name: string
+}
+
 export interface UserSettings {
-  disabledWallets: string[]
+  disabledWalletsByFingerprint?: Record<number, DisabledWallet[]>
 }
 
 export interface User {
@@ -11,5 +16,5 @@ export interface User {
   firstName: string | null
   lastName: string | null
   shareKey: string | null
-  settings: UserSettings
+  settings?: UserSettings
 }

@@ -6,7 +6,15 @@
     <h5 class="card-title">Status: <span [class]="colorClassForSyncStatus">{{status}}</span></h5>
     <h6 class="card-subtitle mb-2 text-muted">Synced to {{syncedHeight}}</h6>
     <div *ngFor="let wallet of wallets; trackBy: trackBy" class="d-flex justify-content-between">
-      <div class="card-font-size">{{wallet.name}}</div>
+      <ng-template #walletActionsContent>
+        <button (click)="hideWallet(wallet)" class="btn btn-dark">
+          <fa-icon [icon]="faEyeSlash" class="fa toggle-hidden-icon hidden"></fa-icon>
+          Hide
+        </button>
+      </ng-template>
+      <div class="card-font-size" style="cursor: pointer" [ngbPopover]="walletActionsContent" popoverClass="bg-dark" [autoClose]="'outside'">
+        {{wallet.name}}
+      </div>
       <div
         *ngIf="wallet.isChiaWallet"
         class="card-font-size"

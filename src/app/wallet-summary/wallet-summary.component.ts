@@ -1,8 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import BigNumber from 'bignumber.js';
+import {BigNumber} from 'bignumber.js';
 import * as moment from 'moment';
 import {getStateForLastUpdated} from '../state-util';
 import {isChiaWallet} from '../wallet-type'
+import {Wallet, WalletStats} from '../api/types/satellite'
+import {EnrichedStats, StateService} from '../state.service'
+import {DisabledWallet, User} from '../api/types/user'
 
 @Component({
   selector: 'app-wallet-summary',
@@ -10,31 +13,62 @@ import {isChiaWallet} from '../wallet-type'
   styleUrls: ['./wallet-summary.component.scss']
 })
 export class WalletSummaryComponent implements OnInit {
-  @Input() wallets: any;
+  @Input() wallets: EnrichedStats<WalletStats>[]
   @Input() bestBlockchainState: any;
   @Input() rate: any;
   @Input() selectedCurrency: any;
 
-  constructor() { }
+  private get user(): User|undefined {
+    return this.stateService.user
+  }
+
+  private get enabledChiaWallets(): Wallet[] {
+    return this.uniqueWallets.reduce(
+      (acc: Wallet[], curr) => {
+        const disabledWallets = this.getDisabledWalletsForFingerprint(curr.fingerprint)
+
+        return acc.concat(
+          curr.wallets.filter(wallet =>
+            isChiaWallet(wallet.type)
+            && disabledWallets.every(disabledWallet => disabledWallet.id !== wallet.id)
+          )
+        )
+      },
+      []
+    )
+  }
+
+  public constructor(
+    private readonly stateService: StateService,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  get walletCount() {
-    return this.uniqueWallets.reduce((acc, curr) => acc + curr.wallets.filter(wallet => isChiaWallet(wallet.type)).length, 0);
+  private getDisabledWalletsForFingerprint(fingerprint: number): DisabledWallet[] {
+    const disabledWalletsByFingerprint = this.user?.settings?.disabledWalletsByFingerprint
+    if (disabledWalletsByFingerprint === undefined) {
+      return []
+    }
+
+    return disabledWalletsByFingerprint[fingerprint] ?? []
   }
 
-  get totalBalance() {
-    return this.uniqueWallets.reduce((acc, wallet) => acc.plus(wallet.wallets.filter(wallet => isChiaWallet(wallet.type)).reduce((subAcc, subWallet) => subAcc.plus(subWallet.balance.unconfirmed), new BigNumber(0))), new BigNumber(0));
+  public get walletCount(): number {
+    return this.enabledChiaWallets.length
+  }
+
+  private get totalBalance(): BigNumber {
+    return this.enabledChiaWallets.reduce((acc, wallet) => acc.plus(wallet.balance.unconfirmed), new BigNumber(0))
   }
 
   get totalBalanceFormatted() {
     return this.totalBalance.toString(10);
   }
 
-  get uniqueWallets(): any[] {
+  private get uniqueWallets(): EnrichedStats<WalletStats>[] {
     const legacyWallets = [];
-    const uniqueWalletsByFingerprint = this.wallets.reduce((walletsByFingerprint, wallet) => {
+    const uniqueWalletsByFingerprint: Record<number, EnrichedStats<WalletStats>> = this.wallets.reduce((walletsByFingerprint, wallet) => {
       if (!wallet.fingerprint) {
         legacyWallets.push(wallet);
 

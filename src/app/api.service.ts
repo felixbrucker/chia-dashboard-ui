@@ -4,7 +4,7 @@ import {LocalStorageService} from './local-storage.service';
 import {Router} from '@angular/router';
 import {apiBaseUrl} from './config';
 import * as moment from 'moment';
-import {User} from './api/types/user'
+import {User, UserSettings} from './api/types/user'
 import {Satellite, SatelliteWithApiKey} from './api/types/satellite'
 import {Rates} from './api/types/rates'
 
@@ -211,4 +211,5 @@ export class ApiService {
 
 export interface UpdateUserOptions {
   isShared?: boolean
+  disabledWalletsByFingerprint?: UserSettings['disabledWalletsByFingerprint']
 }
