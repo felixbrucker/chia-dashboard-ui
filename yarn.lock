@@ -1623,15 +1623,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/angular-fontawesome@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@fortawesome/angular-fontawesome@npm:0.7.0"
+"@fortawesome/angular-fontawesome@npm:^0.8.2":
+  version: 0.8.2
+  resolution: "@fortawesome/angular-fontawesome@npm:0.8.2"
   dependencies:
-    tslib: ^2.0.0
+    tslib: ^2.1.0
   peerDependencies:
-    "@angular/core": ^10.0.0
+    "@angular/core": ^11.0.0
     "@fortawesome/fontawesome-svg-core": ^1.2.27
-  checksum: 7ceabba5b182b62044993b1c1b4b305546defc22051b4c017d7393f4b7c84fcff034d14edd11bf606f576c019f75b36a82723cffebb57350ff8d6d744699fb3a
+  checksum: 314352a4a8ee1df19bbe09bc92cca3e0964997c2a62a21f4e7e29f9ebcc30fcbcda30461a39d80392a63fa07a0fd7bd5fc68455740019d4a0919eddb936e68d3
   languageName: node
   linkType: hard
 
@@ -1786,15 +1786,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ngneat/edit-in-place@npm:^1.3.1":
-  version: 1.6.1
-  resolution: "@ngneat/edit-in-place@npm:1.6.1"
+"@ngneat/edit-in-place@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@ngneat/edit-in-place@npm:1.5.0"
   dependencies:
     tslib: ^2.0.0
   peerDependencies:
     "@angular/common": ">=8.0.0"
     "@angular/core": ">=8.0.0"
-  checksum: 08827ecd18efe22326de6b4562d004e3c1d07276407f5061acc9927d38fcc3d9e88a829077aae113c53c421db9fea8b96b2f3128f568b81c5af52c833fa163ce
+  checksum: bbf949ae06a0d164c3c73ac84289c1901e01ef2ed67a5aa50c975f2a48680c333efef89bd771c909a5d8ae446194c1b9055a25fb9bde8d94839f8c94c3ea9add
   languageName: node
   linkType: hard
 
@@ -3417,13 +3417,13 @@ __metadata:
     "@angular/platform-browser-dynamic": ^11.2.11
     "@angular/router": ^11.2.11
     "@angular/service-worker": ^11.2.11
-    "@fortawesome/angular-fontawesome": ^0.7.0
+    "@fortawesome/angular-fontawesome": ^0.8.2
     "@fortawesome/fontawesome-svg-core": ^1.2.35
     "@fortawesome/free-brands-svg-icons": ^5.15.3
     "@fortawesome/free-regular-svg-icons": ^5.15.3
     "@fortawesome/free-solid-svg-icons": ^5.15.3
     "@ng-bootstrap/ng-bootstrap": ^9.1.1
-    "@ngneat/edit-in-place": ^1.3.1
+    "@ngneat/edit-in-place": 1.5.0
     "@types/node": ^16.18.38
     angular-cli-ghpages: ^1.0.0-rc.1
     axios: ^1.4.0
@@ -11572,7 +11572,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.0":
+"tslib@npm:^2.0.0, tslib@npm:^2.1.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 329ea56123005922f39642318e3d1f0f8265d1e7fcb92c633e0809521da75eeaca28d2cf96d7248229deb40e5c19adf408259f4b9640afd20d13aecc1430f3ad

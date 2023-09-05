@@ -12,12 +12,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-#      - name: Use current yarn
-#        run: yarn set version stable
-#      - name: yarn install
-#        run: yarn install
-      - name: npm install
-        run: npm install
+      - name: Use current yarn
+        run: yarn set version stable
+      - name: yarn install
+        run: yarn install
       - name: Deploy to gh-pages
         if: github.ref == 'refs/heads/master'
         run: npm run deploy
