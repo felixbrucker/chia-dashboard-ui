@@ -2,10 +2,11 @@ import { Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {getStateForLastUpdated} from '../state-util';
 import {EChartsOption} from 'echarts';
-import {StateService} from '../state.service';
+import {EnrichedStats, StateService} from '../state.service'
 import BigNumber from 'bignumber.js';
 import {LocalStorageService} from '../local-storage.service'
 import {faEllipsisV} from '@fortawesome/free-solid-svg-icons'
+import {FarmerStats} from '../api/types/satellite'
 
 @Component({
   selector: 'app-farmer',
@@ -13,7 +14,7 @@ import {faEllipsisV} from '@fortawesome/free-solid-svg-icons'
   styleUrls: ['./farmer.component.scss']
 })
 export class FarmerComponent implements OnInit {
-  @Input() farmer: any;
+  @Input() farmer: EnrichedStats<FarmerStats>;
 
   public readonly faEllipsisV = faEllipsisV
   public chartOptions: EChartsOption;
@@ -81,13 +82,13 @@ export class FarmerComponent implements OnInit {
     if (this.farmer.averageHarvesterResponseTime !== undefined) {
       return this.farmer.averageHarvesterResponseTime;
     }
-    if (!this.farmer.harvesterResponseTimes || this.farmer.harvesterResponseTimes.length === 0) {
+    if (!this.farmer['harvesterResponseTimes'] || this.farmer['harvesterResponseTimes'].length === 0) {
       return null;
     }
 
-    return this.farmer.harvesterResponseTimes
+    return this.farmer['harvesterResponseTimes']
       .reduce((acc, curr) => acc.plus(curr), new BigNumber(0))
-      .dividedBy(this.farmer.harvesterResponseTimes.length)
+      .dividedBy(this.farmer['harvesterResponseTimes'].length)
       .toNumber();
   }
 
@@ -107,11 +108,11 @@ export class FarmerComponent implements OnInit {
     if (this.farmer.worstHarvesterResponseTime !== undefined) {
       return this.farmer.worstHarvesterResponseTime;
     }
-    if (!this.farmer.harvesterResponseTimes || this.farmer.harvesterResponseTimes.length === 0) {
+    if (!this.farmer['harvesterResponseTimes'] || this.farmer['harvesterResponseTimes'].length === 0) {
       return null;
     }
 
-    return this.farmer.harvesterResponseTimes
+    return this.farmer['harvesterResponseTimes']
       .reduce((acc, curr) => acc.isGreaterThan(curr) ? acc : new BigNumber(curr), new BigNumber(0))
       .toNumber();
   }

@@ -3,6 +3,8 @@ import {getStateForLastUpdated} from '../state-util';
 import Capacity from '../capacity';
 import * as moment from 'moment';
 import {BigNumber} from 'bignumber.js';
+import {EnrichedStats} from '../state.service'
+import {HarvesterStats} from '../api/types/satellite'
 
 @Component({
   selector: 'app-harvester',
@@ -10,7 +12,7 @@ import {BigNumber} from 'bignumber.js';
   styleUrls: ['./harvester.component.scss']
 })
 export class HarvesterComponent implements OnInit {
-  @Input() harvester: any;
+  @Input() harvester: EnrichedStats<HarvesterStats>;
   @Input() bestBlockchainState: any;
 
   constructor() { }
@@ -19,7 +21,7 @@ export class HarvesterComponent implements OnInit {
   }
 
   get farmerConnectionsCount() {
-    return this.harvester.farmerConnectionsCount !== undefined ? this.harvester.farmerConnectionsCount : this.harvester.farmerConnections.length;
+    return this.harvester.farmerConnectionsCount !== undefined ? this.harvester.farmerConnectionsCount : this.harvester['farmerConnections'].length;
   }
 
   get status() {
@@ -58,7 +60,7 @@ export class HarvesterComponent implements OnInit {
   }
 
   private get rawCapacityInGib(): BigNumber {
-    return new BigNumber(this.harvester.totalRawPlotCapacityInGib || this.harvester.totalCapacityInGib)
+    return new BigNumber(this.harvester.totalRawPlotCapacityInGib || this.harvester['totalCapacityInGib'])
   }
 
   public get formattedEffectiveCapacity(): string {
@@ -66,7 +68,7 @@ export class HarvesterComponent implements OnInit {
   }
 
   private get effectiveCapacityInGib(): BigNumber {
-    return new BigNumber(this.harvester.totalEffectivePlotCapacityInGib || this.harvester.totalCapacityInGib)
+    return new BigNumber(this.harvester.totalEffectivePlotCapacityInGib || this.harvester['totalCapacityInGib'])
   }
 
   get lastUpdatedBefore() {

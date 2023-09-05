@@ -271,6 +271,7 @@ export class StateService {
           satelliteName: satellite.name,
           satelliteId: satellite._id,
           satelliteUpdatedAt: satellite.updatedAt,
+          chiaVersion: satellite.services.daemon?.stats?.version,
         });
       }
       return statsCollection;
@@ -308,4 +309,5 @@ export type EnrichedStats<T> = T & {
   satelliteName: string
   satelliteId: string
   satelliteUpdatedAt: string
+  chiaVersion?: string
 }

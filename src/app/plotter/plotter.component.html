@@ -1,6 +1,10 @@
 <div class="card">
-  <div class="card-header">
+  <div class="card-header d-flex justify-content-between">
     <h5>Plotter ({{satelliteName}})</h5>
+    <span *ngIf="plotter.chiaVersion">
+      <img src="assets/icon-transparent.png" height="18" alt="">
+      <small class="text-muted">v{{plotter.chiaVersion}}</small>
+    </span>
   </div>
   <div class="card-body card-body-with-title" [class.plotter-card]="runningJobsCount > 0">
     <h5 class="card-title">

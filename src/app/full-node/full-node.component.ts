@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
 import {getColorClassForSyncStatus, getStateForLastUpdated} from '../state-util';
 import Capacity from '../capacity';
+import {EnrichedStats} from '../state.service'
+import {FullNodeStats} from '../api/types/satellite'
 
 @Component({
   selector: 'app-full-node',
@@ -9,7 +11,7 @@ import Capacity from '../capacity';
   styleUrls: ['./full-node.component.scss']
 })
 export class FullNodeComponent implements OnInit {
-  @Input() fullNode: any;
+  @Input() fullNode: EnrichedStats<FullNodeStats>;
 
   constructor() { }
 
@@ -17,7 +19,7 @@ export class FullNodeComponent implements OnInit {
   }
 
   get fullNodeConnectionCount() {
-    return this.fullNode.fullNodeConnectionsCount !== undefined ? this.fullNode.fullNodeConnectionsCount : this.fullNode.fullNodeConnections.length;
+    return this.fullNode.fullNodeConnectionsCount !== undefined ? this.fullNode.fullNodeConnectionsCount : this.fullNode['fullNodeConnections'].length;
   }
 
   get satelliteName() {

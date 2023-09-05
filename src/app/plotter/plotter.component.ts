@@ -1,5 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import * as moment from 'moment';
+import {EnrichedStats} from '../state.service'
+import {PlotterStats} from '../api/types/satellite'
 
 @Component({
   selector: 'app-plotter',
@@ -7,15 +9,11 @@ import * as moment from 'moment';
   styleUrls: ['./plotter.component.scss']
 })
 export class PlotterComponent implements OnInit {
-  @Input() plotter: any;
+  @Input() plotter: EnrichedStats<PlotterStats>;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  trackBy(index, item) {
-    return item.id;
   }
 
   get satelliteName() {

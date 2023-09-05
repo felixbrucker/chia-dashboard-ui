@@ -88,11 +88,16 @@ export interface PlotterStats {
   jobs: PlotJob[]
 }
 
+export interface DaemonStats {
+  version: string
+}
+
 export interface Satellite {
   _id: string
   name: string
   hidden: boolean
   services: {
+    daemon?: ChiaService<DaemonStats>
     farmer: ChiaService<FarmerStats>
     harvester: ChiaService<HarvesterStats>
     fullNode: ChiaService<FullNodeStats>

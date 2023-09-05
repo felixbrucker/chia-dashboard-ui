@@ -1,6 +1,10 @@
 <div class="card">
-  <div class="card-header">
+  <div class="card-header d-flex justify-content-between">
     <h5>Harvester ({{satelliteName}})</h5>
+    <span *ngIf="harvester.chiaVersion">
+      <img src="assets/icon-transparent.png" height="18" alt="">
+      <small class="text-muted">v{{harvester.chiaVersion}}</small>
+    </span>
   </div>
   <div class="card-body card-body-with-title">
     <h5 class="card-title">
