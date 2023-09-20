@@ -50,3 +50,18 @@
     padding-right: 4%;
   }
 }
+
+@media (max-width: 1200px) {
+  .navbar-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .nav-item {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .header-row-item {
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+}
