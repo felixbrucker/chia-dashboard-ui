@@ -171,8 +171,9 @@ export class FarmSummaryComponent implements OnInit {
     if (dailyReward == null) {
       return 'N/A';
     }
+    const decimalPlaces = dailyReward.isLessThan(0.01) ? 6 : 2
 
-    return `≈ ${dailyReward.toFixed(2)} XCH`;
+    return `≈ ${dailyReward.toFixed(decimalPlaces)} XCH`;
   }
 
   get dailyRewardXchBigNumber() {
