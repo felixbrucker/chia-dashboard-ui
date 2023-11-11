@@ -6,7 +6,6 @@
 /dist
 # Only exists if Bazel was run
 /bazel-out
-.yarn
 
 # dependencies
 /node_modules

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {IconDefinition} from "@fortawesome/fontawesome-common-types";
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-empty-state',
