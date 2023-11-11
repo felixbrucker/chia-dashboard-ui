@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16.x
       - name: Use current yarn
-        run: yarn set version stable
+        run: yarn set version 3.x
       - name: yarn install
         run: yarn install
       - name: Deploy to gh-pages
