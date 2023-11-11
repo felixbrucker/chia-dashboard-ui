@@ -71,7 +71,7 @@ export class WalletComponent implements OnInit {
   public get wallets(): WalletInfo[] {
     const disabledWallets = this.disabledWallets
 
-    return this.wallet.wallets
+    return (this.wallet.wallets ?? [])
       .filter(wallet => disabledWallets.every(disabledWallet => disabledWallet.id !== wallet.id))
       .map(wallet => {
         return {

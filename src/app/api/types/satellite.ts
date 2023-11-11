@@ -65,7 +65,7 @@ export interface WalletSyncStatus {
 }
 
 export interface WalletStats {
-  wallets: Wallet[]
+  wallets?: Wallet[]
   syncStatus: WalletSyncStatus
   farmedAmount: {
     lastHeightFarmed: number

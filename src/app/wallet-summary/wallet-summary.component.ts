@@ -28,7 +28,7 @@ export class WalletSummaryComponent implements OnInit {
         const disabledWallets = this.getDisabledWalletsForFingerprint(curr.fingerprint)
 
         return acc.concat(
-          curr.wallets.filter(wallet =>
+          (curr.wallets ?? []).filter(wallet =>
             isChiaWallet(wallet.type)
             && disabledWallets.every(disabledWallet => disabledWallet.id !== wallet.id)
           )
