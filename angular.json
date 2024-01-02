@@ -109,5 +109,8 @@
       }
     }
   },
-  "defaultProject": "app"
+  "defaultProject": "app",
+  "cli": {
+    "packageManager": "pnpm"
+  }
 }
