@@ -27,13 +27,12 @@
               "src/manifest.webmanifest"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
-              "src/bootstrap-xxl.css"
+              "src/bootstrap-xxxl.css"
             ],
             "scripts": [],
             "allowedCommonJsDependencies": [
-              "bignumber.js"
+              "moment"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -89,18 +88,6 @@
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "app:build"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "deploy": {

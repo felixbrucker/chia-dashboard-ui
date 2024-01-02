@@ -26,37 +26,37 @@
       [bestBlockchainState]="bestBlockchainState"
       [rate]="rate"
       [selectedCurrency]="selectedCurrency"
-      class="p-1 col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-6">
+      class="p-1 col-12 col-md-6 col-lg-4 col-xl-4 col-xxxl-6">
     </app-wallet-summary>
   </div>
   <div class="row">
     <app-plotter
       *ngFor="let plotter of plotters; trackBy: trackBy"
       [plotter]="plotter"
-      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-4">
+      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxxl-4">
     </app-plotter>
     <app-harvester
       *ngFor="let harvester of harvesters; trackBy: trackBy"
       [harvester]="harvester"
       [bestBlockchainState]="bestBlockchainState"
-      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-4">
+      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxxl-4">
     </app-harvester>
     <app-farmer
       *ngFor="let farmer of farmers; trackBy: trackBy"
       [farmer]="farmer"
-      class="p-1 col-12 col-sm-12 col-md-8 col-lg-8 col-xl-6 col-xxl-8">
+      class="p-1 col-12 col-sm-12 col-md-8 col-lg-8 col-xl-6 col-xxxl-8">
     </app-farmer>
     <app-full-node
       *ngFor="let fullNode of fullNodes; trackBy: trackBy"
       [fullNode]="fullNode"
-      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-4">
+      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxxl-4">
     </app-full-node>
     <app-wallet
       *ngFor="let wallet of wallets; trackBy: trackBy"
       [wallet]="wallet"
       [rate]="rate"
       [selectedCurrency]="selectedCurrency"
-      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxl-4">
+      class="p-1 col-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 col-xxxl-4">
     </app-wallet>
   </div>
 </div>

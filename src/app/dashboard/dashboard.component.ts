@@ -61,10 +61,10 @@ export class DashboardComponent implements OnInit {
 
   public get farmSummaryClasses(): string {
     if (this.hasWallets) {
-      return 'col-md-6 col-lg-8 col-xl-8 col-xxl-18'
+      return 'col-md-6 col-lg-8 col-xl-8 col-xxxl-18'
     }
 
-    return 'col-md-12 col-lg-12 col-xl-12 col-xxl-24'
+    return 'col-md-12 col-lg-12 col-xl-12 col-xxxl-24'
   }
 
   get fullNodes() {

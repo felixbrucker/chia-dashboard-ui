@@ -249,26 +249,26 @@ export class FarmSummaryComponent implements OnInit {
 
   public get columnClassesFirstRows(): string {
     if (this.hasWallets) {
-      return 'col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-8'
+      return 'col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxxl-8'
     }
 
-    return 'col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-xxl-8'
+    return 'col-12 col-sm-6 col-md-6 col-lg-4 col-xl-4 col-xxxl-8'
   }
 
   public get columnClassesLastRow(): string {
     if (this.hasWallets) {
-      return 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-8'
+      return 'col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-8'
     }
 
-    return 'col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxl-8'
+    return 'col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 col-xxxl-8'
   }
 
   public get columnChildrenClassesLastRow(): string {
     if (this.hasWallets) {
-      return 'col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxl-24'
+      return 'col-12 col-sm-6 col-md-12 col-lg-6 col-xl-6 col-xxxl-24'
     }
 
-    return 'col-12 col-sm-6 col-md-6 col-lg-12 col-xl-12 col-xxl-24'
+    return 'col-12 col-sm-6 col-md-6 col-lg-12 col-xl-12 col-xxxl-24'
   }
 
   private get hasWallets(): boolean {
