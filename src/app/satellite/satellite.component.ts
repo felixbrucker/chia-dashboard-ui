@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 import { faTrash, faEyeSlash, faEye } from "@fortawesome/free-solid-svg-icons";
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 import {ApiService} from '../api.service';
 import {ToastService} from '../toast.service';
 import {StateService} from '../state.service';
@@ -18,7 +18,7 @@ export class SatelliteComponent implements OnInit {
   public faTrash = faTrash;
   public faEyeSlash = faEyeSlash;
   public faEye = faEye;
-  public nameControl: FormControl
+  public nameControl: UntypedFormControl
 
   constructor(
     private apiService: ApiService,
@@ -27,7 +27,7 @@ export class SatelliteComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.nameControl = new FormControl(this.satellite.name);
+    this.nameControl = new UntypedFormControl(this.satellite.name);
   }
 
   async updateName() {

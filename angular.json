@@ -101,8 +101,8 @@
       }
     }
   },
-  "defaultProject": "app",
   "cli": {
-    "packageManager": "pnpm"
+    "packageManager": "pnpm",
+    "analytics": false
   }
 }
