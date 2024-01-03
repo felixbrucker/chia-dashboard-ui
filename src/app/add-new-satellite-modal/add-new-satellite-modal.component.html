@@ -1,13 +1,11 @@
 <ng-template #addSatelliteModal let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" style="color: #474747">Add new satellite</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
+    <h4 class="modal-title modal-text">Add new satellite</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
     <div *ngIf="!newSatellite.apiKey">
-      <input type="text" class="form-control" placeholder="Satellite name" [(ngModel)]="newSatelliteName" style="width: 20em">
+      <input type="text" class="form-control" placeholder="Satellite name" [(ngModel)]="newSatelliteName">
     </div>
     <div *ngIf="newSatellite.apiKey">
       <div class="alert alert-info" role="alert">
@@ -15,14 +13,12 @@
       </div>
       <div class="input-group">
         <input type="text" class="form-control" [value]="newSatellite.apiKey" readonly>
-        <div class="input-group-append">
-          <div class="input-group-text"
-               ngbTooltip="Copy"
-               ngxClipboard
-               [cbContent]="newSatellite.apiKey"
-               style="cursor: pointer">
-            <fa-icon [icon]="faCopy"></fa-icon>
-          </div>
+        <div class="input-group-text"
+             ngbTooltip="Copy"
+             ngxClipboard
+             [cbContent]="newSatellite.apiKey"
+             style="cursor: pointer">
+          <fa-icon [icon]="faCopy"></fa-icon>
         </div>
       </div>
     </div>

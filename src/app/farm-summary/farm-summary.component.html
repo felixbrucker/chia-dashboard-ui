@@ -10,19 +10,19 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-24">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Raw Total Capacity</div>
-              <div class="card-font-size font-weight-bold">{{formattedRawCapacity}}</div>
+              <div class="card-font-size fw-bold">{{formattedRawCapacity}}</div>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-24">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Effective Total Capacity</div>
-              <div class="card-font-size font-weight-bold">{{formattedEffectiveCapacity}}</div>
+              <div class="card-font-size fw-bold">{{formattedEffectiveCapacity}}</div>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-24">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Network space</div>
-              <div class="card-font-size font-weight-bold">{{networkSpace}}</div>
+              <div class="card-font-size fw-bold">{{networkSpace}}</div>
             </div>
           </div>
         </div>
@@ -32,13 +32,13 @@
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-24">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Total Plots</div>
-              <div class="card-font-size font-weight-bold">{{plotCountString}}</div>
+              <div class="card-font-size fw-bold">{{plotCountString}}</div>
             </div>
           </div>
           <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxxl-24">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Est. time to win</div>
-              <div class="card-font-size font-weight-bold">{{estimatedTimeToWinInHours}}</div>
+              <div class="card-font-size fw-bold">{{estimatedTimeToWinInHours}}</div>
             </div>
           </div>
         </div>
@@ -48,13 +48,13 @@
           <div [ngClass]="columnChildrenClassesLastRow">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Daily Reward</div>
-              <div class="card-font-size font-weight-bold" placement="bottom" ngbTooltip="{{dailyRewardFiat}}">{{dailyRewardXch}}</div>
+              <div class="card-font-size fw-bold" placement="bottom" ngbTooltip="{{dailyRewardFiat}}">{{dailyRewardXch}}</div>
             </div>
           </div>
           <div [ngClass]="columnChildrenClassesLastRow">
             <div class="d-flex justify-content-between">
               <div class="card-font-size">Last block won</div>
-              <div class="card-font-size font-weight-bold">
+              <div class="card-font-size fw-bold">
                 <span *ngIf="lastHeightFarmedOrNull">
                   <a href="https://alltheblocks.net/chia/height/{{lastHeightFarmedOrNull}}" target="_blank" style="color: #cfd0d1">{{lastHeightFarmedOrNull}}</a>
                   ({{lastHeightFarmedDuration}})

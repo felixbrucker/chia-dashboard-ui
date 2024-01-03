@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-xl navbar-dark sticky-navbar">
-  <a class="navbar-brand">
+  <a class="navbar-brand text-decoration-none">
     <img src="assets/icon.png" width="34" height="34" alt="" style="border-radius: 10%">
     <span style="font-weight: 300; font-size: 1.1em;margin-left: 8px;vertical-align: top">Chia-Dashboard</span>
   </a>
@@ -7,7 +7,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" [ngbCollapse]="isMenuCollapsed">
-    <ul class="navbar-nav mr-auto">
+    <ul class="navbar-nav me-auto">
       <li class="nav-item" *ngIf="user">
         <a class="nav-link">
           <button type="button" class="btn btn-outline-primary" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="onTabButtonClick()">
@@ -38,7 +38,7 @@
         </button>
       </div>
       <div class="currency-select-wrapper header-row-item" *ngIf="(isAuthenticated || hasShareKey) && currencies.length > 0">
-        <select class="custom-select currency-select" [ngModel]="selectedCurrency" (ngModelChange)="setSelectedCurrency($event)">
+        <select class="form-select currency-select" [ngModel]="selectedCurrency" (ngModelChange)="setSelectedCurrency($event)">
           <option *ngFor="let currency of currencies" [ngValue]="currency" class="currency-select-option">{{ currency.toUpperCase() }}</option>
         </select>
       </div>
@@ -53,11 +53,11 @@
         </button>
       </div>
       <div>
-        <a class="btn btn-light" href="https://www.paypal.me/felixbrucker" role="button" target="_blank" (click)="isMenuCollapsed = true" >
+        <a class="btn btn-light text-decoration-none" href="https://www.paypal.me/felixbrucker" role="button" target="_blank" (click)="isMenuCollapsed = true" >
           Donate <fa-icon [icon]="faHeart" class="fa" style="color: rgb(219, 97, 162)"></fa-icon>
         </a>
       </div>
-      <div class="ml-2 row" *ngIf="user || hasShareKey">
+      <div class="ms-2 d-flex" *ngIf="user || hasShareKey">
         <div class="my-auto m-1">
           <fa-icon [icon]="faSync" size="lg" class="" [ngClass]="autoUpdateClass" [classes]="autoUpdateIconClasses" style="cursor: pointer" (click)="toggleAutoUpdateMode()"></fa-icon>
         </div>

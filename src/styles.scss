@@ -1,32 +1,106 @@
+$form-select-indicator-color: #cfd0d1;
+$input-placeholder-color: #6c757d;
+
 @import 'bootstrap/scss/functions';
 @import 'bootstrap/scss/variables';
 @import 'bootstrap/scss/mixins';
 @import 'bootstrap/scss/bootstrap';
-@import 'ngx-toastr/toastr-bs4-alert';
+@import 'ngx-toastr/toastr-bs5-alert';
 
-.table th { border-top: none; }
-
-html, body {
-  height: 100%;
-  padding-top: 2.4em;
+body {
+  --text-color: #000;
+  --background-color: #f3f6f9;
+  --card-background-color: initial;
+  --dropdown-menu-background-color: #fefefe;
+  --dropdown-item-background-color-hover: #e9ecef;
+  --dropdown-item-divider-color: initial;
+  --table-border-color: initial;
+  --dot-default-color: initial;
+  --date-formatting-icon-color: initial;
+  --info-icon-color: initial;
+  --info-icon-color-hover: rgba(0, 0, 0, 0.6);
+  --navbar-background-color: #fefefe;
+  --input-field-background-color: initial;
+  --input-field-border-color: initial;
+  --button-background-color: initial;
+  --button-border-color: initial;
+  --button-background-color-hover: #d3d4d5;
+  --button-border-color-hover: #c6c7c8;
+  --button-color-hover: initial;
+  --select-item-background-color: initial;
+  --footer-background-color: #e8ebed;
+  --highlight-color: rgba(0, 0, 0, 0.9);
+  --highlight-color-hover: rgba(0, 0, 0, 0.6);
+  --progress-bar-background-color: #e9ecef;
+  --page-link-background-color: #f3f6f9;
+  --page-link-border-color: rgba(0, 0, 0, 0.4);
+  --nav-tabs-bottom-border-color: #e9ecef;
+  --brand-text-color: #000;
+  --settings-modal-text-color: #474747;
+  --settings-input-field-border-color: black;
+  --slider-selection-background-color-disabled: #8b91a2;
+  --slider-pointer-background-color-disabled: #d8e0f3;
+  --slider-legend-color: #474747;
+  --slider-tick-color: #474747;
+  --slider-bubble-color: #55637d;
 }
-.dark-theme {
-  background-color: #36393f;
-  color: #cfd0d1;
+
+body.dark-theme {
+  --text-color: #cfd0d1;
+  --background-color: #36393f;
+  --card-background-color: #2f3136;
+  --dropdown-menu-background-color: #2f3136;
+  --dropdown-item-background-color-hover: #262629;
+  --dropdown-item-divider-color: #262629;
+  --table-border-color: #454d55;
+  --dot-default-color: #bbb;
+  --date-formatting-icon-color: rgba(255, 255, 255, 0.6);
+  --info-icon-color: rgba(255, 255, 255, 0.4);
+  --info-icon-color-hover: rgba(255, 255, 255, 0.9);
+  --navbar-background-color: #2f3136;
+  --input-field-background-color: #262629;
+  --input-field-border-color: #6c757d;
+  --button-background-color: #262629;
+  --button-border-color: #6c757d;
+  --button-background-color-hover: #f8f9fa;
+  --button-border-color-hover: #f8f9fa;
+  --button-color-hover: #212529;
+  --select-item-background-color: #262629;
+  --footer-background-color: #2b2e33;
+  --highlight-color: rgba(255, 255, 255, 0.6);
+  --highlight-color-hover: rgba(255, 255, 255, 0.9);
+  --progress-bar-background-color: #262629;
+  --page-link-background-color: #262629;
+  --page-link-border-color: #18191c;
+  --nav-tabs-bottom-border-color: #2b2e33;
+  --brand-text-color: #fff;
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --settings-modal-text-color: initial;
+  --settings-input-field-border-color: var(--bs-border-color);
+  --slider-selection-background-color-disabled: #8b91a2;
+  --slider-pointer-background-color-disabled: #d8e0f3;
+  --slider-legend-color: #cfd0d1;
+  --slider-tick-color: #cfd0d1;
+  --slider-bubble-color: #cfd0d1;
 }
 
-@media (min-width: 1700px) {
-  .container-fluid {
-    padding-left: 4%;
-    padding-right: 4%;
-  }
+body.dark-theme .popover {
+  --bs-popover-bg: #ebebeb;
+  --bs-popover-body-color: #212529;
 }
-
-.card {
-  background-color: #2f3136;
+.tooltip {
+  --bs-tooltip-color: white;
+  --bs-tooltip-bg: black;
+}
+.pagination {
+  --bs-pagination-disabled-color: rgb(108, 117, 125);
 }
 .card-header {
+  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
   padding-bottom: 0.15rem;
+}
+.card-footer {
+  --bs-card-cap-bg: rgba(0, 0, 0, 0.03);
 }
 .card-body {
   padding-top: 1rem;
@@ -36,6 +110,69 @@ html, body {
 }
 .card-font-size {
   font-size: 18px;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.input-field {
+  background-color: var(--input-field-background-color);
+  color: var(--text-color);
+  border-color: var(--input-field-border-color);
+}
+.input-field:focus,
+.input-field:active,
+.input-field:focus:active {
+  background-color: var(--input-field-background-color);
+  color: var(--text-color);
+}
+
+.table th {
+  border-color: var(--table-border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+.table td {
+  border-color: var(--table-border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0.75rem;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.form-check-input {
+  margin-top: 6px;
+}
+
+html, body {
+  height: 100%;
+  padding-top: 2.4em;
+}
+
+.card {
+  background-color: var(--card-background-color);
+  color: var(--text-color);
+}
+.dot {
+  margin-top: 3px;
+  height: 0.66rem;
+  width: 0.66rem;
+  background-color: var(--dot-default-color);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+@media (min-width: 1700px) {
+  .container-fluid {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
 }
 
 .dot {
@@ -80,4 +217,10 @@ span[red] {
 .fa-spin-fast {
   -webkit-animation: fa-spin 1s infinite linear;
   animation: fa-spin 1s infinite linear;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.modal-text {
+  color: var(--settings-modal-text-color);
 }

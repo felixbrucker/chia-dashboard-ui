@@ -1,39 +1,40 @@
 <div class="card">
   <div class="card-header d-flex justify-content-between">
     <h5>Farmer ({{satelliteName}})</h5>
-    <div class="d-flex" style="gap: 0.33rem !important;">
+    <div class="d-flex" style="gap: 0.4rem !important;">
       <span *ngIf="farmer.chiaVersion">
         <img src="assets/icon-transparent.png" height="18" alt="">
         <small class="text-muted">v{{farmer.chiaVersion}}</small>
       </span>
       <h5>
         <span [class]="colorClassForSyncStatus">{{status}}</span>
+      </h5>
+      <div>
         <ng-template #settingsContent>
           <div class="mb-1">
             Response time color scheme:
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="responseTimeColorSchemeStrict" name="responseTimeColorSchemeStrict" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.strict">
-            <label class="custom-control-label" for="responseTimeColorSchemeStrict">Strict</label>
+          <div class="form-check form-radio form-check-inline">
+            <input type="radio" id="responseTimeColorSchemeStrict" name="responseTimeColorSchemeStrict" class="form-check-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.strict">
+            <label class="form-check-label" for="responseTimeColorSchemeStrict">Strict</label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="responseTimeColorSchemeRegular" name="responseTimeColorSchemeRegular" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.regular">
-            <label class="custom-control-label" for="responseTimeColorSchemeRegular">Regular</label>
+          <div class="form-check form-radio form-check-inline">
+            <input type="radio" id="responseTimeColorSchemeRegular" name="responseTimeColorSchemeRegular" class="form-check-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.regular">
+            <label class="form-check-label" for="responseTimeColorSchemeRegular">Regular</label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" id="responseTimeColorSchemeRelaxed" name="responseTimeColorSchemeRelaxed" class="custom-control-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.relaxed">
-            <label class="custom-control-label" for="responseTimeColorSchemeRelaxed">Relaxed</label>
+          <div class="form-check form-radio form-check-inline">
+            <input type="radio" id="responseTimeColorSchemeRelaxed" name="responseTimeColorSchemeRelaxed" class="form-check-input" [(ngModel)]="responseTimeColorScheme" [value]="ResponseTimeColorScheme.relaxed">
+            <label class="form-check-label" for="responseTimeColorSchemeRelaxed">Relaxed</label>
           </div>
         </ng-template>
         <fa-icon
-          class="ml-2"
           [icon]="faEllipsisV"
-          size="sm"
+          size="xl"
           style="cursor: pointer"
           [ngbPopover]="settingsContent"
           [autoClose]="'outside'"
         ></fa-icon>
-      </h5>
+      </div>
     </div>
   </div>
   <div class="card-body farmer-card">
@@ -42,13 +43,13 @@
       <div class="col-12 col-sm-6">
         <div class="d-flex justify-content-between">
           <div class="card-font-size" placement="bottom" ngbTooltip="The average harvester response time in milliseconds/seconds">Average RT</div>
-          <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(averageHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{averageHarvesterResponseTimeFormatted}}</div>
+          <div class="card-font-size fw-bold" [class]="getColorClassForResponseTime(averageHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{averageHarvesterResponseTimeFormatted}}</div>
         </div>
       </div>
       <div class="col-12 col-sm-6">
         <div class="d-flex justify-content-between">
           <div class="card-font-size" placement="bottom" ngbTooltip="The worst harvester response time in milliseconds/seconds">Worst RT</div>
-          <div class="card-font-size font-weight-bold" [class]="getColorClassForResponseTime(worstHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{worstHarvesterResponseTimeFormatted}}</div>
+          <div class="card-font-size fw-bold" [class]="getColorClassForResponseTime(worstHarvesterResponseTime)" style="cursor: pointer" (click)="toggleIsShowingResponseTimeInMs()">{{worstHarvesterResponseTimeFormatted}}</div>
         </div>
       </div>
     </div>

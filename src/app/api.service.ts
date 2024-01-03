@@ -179,7 +179,7 @@ export class ApiService {
   }
 
   async authenticate(data) {
-    const { access_token, refresh_token, expires_in } = await this.request({
+    const { access_token, refresh_token, expires_in } = await this.request<AuthenticationResult>({
       method: 'post',
       url: 'oauth/token',
       data,
@@ -212,4 +212,10 @@ export class ApiService {
 export interface UpdateUserOptions {
   isShared?: boolean
   disabledWalletsByFingerprint?: UserSettings['disabledWalletsByFingerprint']
+}
+
+export interface AuthenticationResult {
+  access_token: string
+  refresh_token: string
+  expires_in: number
 }

@@ -6,14 +6,12 @@
       <div *ngIf="user?.shareKey">
         <div class="input-group">
           <input type="text" class="form-control" [value]="shareUrl" readonly disabled>
-          <div class="input-group-append">
-            <div class="input-group-text"
-                 ngbTooltip="Copy"
-                 ngxClipboard
-                 [cbContent]="shareUrl"
-                 style="cursor: pointer">
-              <fa-icon [icon]="faCopy"></fa-icon>
-            </div>
+          <div class="input-group-text"
+               ngbTooltip="Copy"
+               ngxClipboard
+               [cbContent]="shareUrl"
+               style="cursor: pointer">
+            <fa-icon [icon]="faCopy"></fa-icon>
           </div>
         </div>
       </div>
@@ -29,9 +27,9 @@
   <div class="card col-12 col-md-10 col-lg-8 col-xl-6 col-xxxl-9">
     <div class="card-body">
       <h5 class="card-title">Settings</h5>
-      <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" id="hideDismissedUpdateNotifications" [(ngModel)]="hideDismissedUpdateNotifications">
-        <label class="custom-control-label" for="hideDismissedUpdateNotifications">Hide dismissed update notifications</label>
+      <div class="form-check form-checkbox">
+        <input type="checkbox" class="form-check-input" id="hideDismissedUpdateNotifications" [(ngModel)]="hideDismissedUpdateNotifications">
+        <label class="form-check-label" for="hideDismissedUpdateNotifications">Hide dismissed update notifications</label>
       </div>
     </div>
   </div>
