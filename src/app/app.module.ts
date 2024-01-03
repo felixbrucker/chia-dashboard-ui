@@ -31,7 +31,7 @@ import { DownloadLinksComponent } from './download-links/download-links.componen
 import { FarmerComponent } from './farmer/farmer.component';
 import { ConfirmationModalComponent } from './confirmation-modal/confirmation-modal.component';
 import { PlotterComponent } from './plotter/plotter.component';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditableComponent, EditModeDirective, ViewModeDirective } from '@ngneat/edit-in-place';
 import {ClipboardModule} from 'ngx-clipboard';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedDashboardComponent } from './shared-dashboard/shared-dashboard.component';
@@ -78,7 +78,9 @@ import { SharedDashboardComponent } from './shared-dashboard/shared-dashboard.co
       registrationStrategy: 'registerImmediately'
     }),
     NgxScrollTopModule,
-    EditableModule,
+    EditableComponent,
+    EditModeDirective,
+    ViewModeDirective,
     ReactiveFormsModule,
     ClipboardModule,
   ],

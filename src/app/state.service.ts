@@ -6,7 +6,6 @@ import * as moment from 'moment'
 import {Moment} from 'moment'
 import {LocalStorageService} from './local-storage.service'
 import {SatelliteReleasesService} from './satellite-releases.service'
-import * as semverLt from 'semver/functions/lt'
 import {AutoUpdateMode, getIntervalInSeconds} from './auto-update-mode'
 import {take} from 'rxjs/operators'
 import {User} from './api/types/user'
@@ -19,6 +18,7 @@ import {
   WalletStats
 } from './api/types/satellite'
 import {Rates} from './api/types/rates'
+import {lt as semverLt} from 'semver'
 
 @Injectable({
   providedIn: 'root',
