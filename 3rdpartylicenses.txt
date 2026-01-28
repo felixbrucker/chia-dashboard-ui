@@ -100,7 +100,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2024 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -200,7 +200,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2023 Fonticons, Inc.
+Copyright 2024 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -269,7 +269,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2024 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -369,7 +369,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2023 Fonticons, Inc.
+Copyright 2024 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -438,7 +438,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2024 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -538,7 +538,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2023 Fonticons, Inc.
+Copyright 2024 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -607,7 +607,7 @@ as SVG and JS file types.
 In the Font Awesome Free download, the SIL OFL license applies to all icons
 packaged as web and desktop font files.
 
-Copyright (c) 2023 Fonticons, Inc. (https://fontawesome.com)
+Copyright (c) 2024 Fonticons, Inc. (https://fontawesome.com)
 with Reserved Font Name: "Font Awesome".
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
@@ -707,7 +707,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 In the Font Awesome Free download, the MIT license applies to all non-font and
 non-icon files.
 
-Copyright 2023 Fonticons, Inc.
+Copyright 2024 Fonticons, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in the
@@ -817,7 +817,7 @@ MIT
 The MIT License (MIT)
 =====================
 
-Copyright © `<2023>` `Michael Mclaughlin`
+Copyright © `<2025>` `Michael Mclaughlin`
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
@@ -844,7 +844,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 core-js
 MIT
-Copyright (c) 2014-2023 Denis Pushkarev
+Copyright (c) 2013–2025 Denis Pushkarev (zloirock.ru)
+Copyright (c) 2025–2026 CoreJS Company (core-js.io)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1089,25 +1090,6 @@ The following files embed [d3.js](https://github.com/d3/d3) BSD 3-Clause:
     `/src/chart/graph/forceHelper.ts`,
     `/src/util/number.ts`
 See `/licenses/LICENSE-d3` for details of the license.
-
-
-lru-cache
-ISC
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 
 moment
@@ -1472,30 +1454,11 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
-yallist
-ISC
-The ISC License
-
-Copyright (c) Isaac Z. Schlueter and Contributors
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted, provided that the above
-copyright notice and this permission notice appear in all copies.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
-IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-
-
 zone.js
 MIT
 The MIT License
 
-Copyright (c) 2010-2023 Google LLC. https://angular.io/license
+Copyright (c) 2010-2024 Google LLC. https://angular.io/license
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
