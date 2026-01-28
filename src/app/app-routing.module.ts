@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component';
 import {SatelliteListComponent} from './satellite-list/satellite-list.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SharedDashboardComponent} from './shared-dashboard/shared-dashboard.component';
+import {PrivacyComponent} from './privacy/privacy.component'
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, pathMatch: 'full' },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, pathMatch: 'full', data: { titleSuffix: 'Profile' } },
   { path: 'shared/:shareKey', component: SharedDashboardComponent, pathMatch: 'full' },
   { path: 'oauth', loadChildren: () => import('./oauth/oauth.module').then(m => m.OAuthModule) },
+  { path: 'privacy', component: PrivacyComponent, pathMatch: 'full', data: { titleSuffix: 'Privacy Policy' } },
   { path: '**', redirectTo: '' }
 ];
 
